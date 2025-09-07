@@ -2,11 +2,10 @@ import os
 import pandas as pd
 import numpy as np
 
-# Create folder to save synthetic data
 output_folder = "synthetic_data"
 os.makedirs(output_folder, exist_ok=True)
 
-# Function to generate synthetic tourist data
+
 def generate_tourist_data(n=1000):
     np.random.seed(42)
     data = {
@@ -21,7 +20,7 @@ def generate_tourist_data(n=1000):
     }
     return pd.DataFrame(data)
 
-# Function to generate synthetic incident data
+
 def generate_incident_data(n=500):
     np.random.seed(24)
     data = {
@@ -35,7 +34,7 @@ def generate_incident_data(n=500):
     }
     return pd.DataFrame(data)
 
-# Function to generate synthetic geofence alert data
+
 def generate_geofence_data(n=700):
     np.random.seed(56)
     data = {
@@ -48,7 +47,6 @@ def generate_geofence_data(n=700):
     }
     return pd.DataFrame(data)
 
-# Function to generate synthetic SOS request data
 def generate_sos_data(n=300):
     np.random.seed(78)
     data = {
@@ -61,13 +59,13 @@ def generate_sos_data(n=300):
     }
     return pd.DataFrame(data)
 
-# Generate all datasets
+
 tourist_df = generate_tourist_data()
 incident_df = generate_incident_data()
 geofence_df = generate_geofence_data()
 sos_df = generate_sos_data()
 
-# Save them to CSV
+
 tourist_df.to_csv(os.path.join(output_folder, "tourist_data.csv"), index=False)
 incident_df.to_csv(os.path.join(output_folder, "incident_data.csv"), index=False)
 geofence_df.to_csv(os.path.join(output_folder, "geofence_data.csv"), index=False)
