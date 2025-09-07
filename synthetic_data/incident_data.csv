@@ -1,0 +1,501 @@
+Incident_ID,Tourist_ID,Incident_Type,Severity,Location,Reported_Date,Resolved
+1,419,Theft,Medium,Beach,2025-01-01 00:00:00,Yes
+2,900,Crowd Issue,Medium,Beach,2025-01-01 12:00:00,Yes
+3,193,Lost Item,Medium,Hotel,2025-01-02 00:00:00,No
+4,344,Medical Emergency,High,Market,2025-01-02 12:00:00,No
+5,402,Lost Item,Medium,Beach,2025-01-03 00:00:00,No
+6,146,Accident,Medium,Hotel,2025-01-03 12:00:00,No
+7,130,Accident,High,Beach,2025-01-04 00:00:00,Yes
+8,357,Crowd Issue,Low,Market,2025-01-04 12:00:00,Yes
+9,124,Lost Item,Low,Monument,2025-01-05 00:00:00,Yes
+10,208,Accident,Low,Market,2025-01-05 12:00:00,No
+11,5,Crowd Issue,Low,Market,2025-01-06 00:00:00,No
+12,228,Theft,Low,Market,2025-01-06 12:00:00,Yes
+13,851,Lost Item,High,Beach,2025-01-07 00:00:00,Yes
+14,396,Lost Item,Medium,Airport,2025-01-07 12:00:00,No
+15,892,Theft,Medium,Market,2025-01-08 00:00:00,No
+16,484,Theft,Low,Hotel,2025-01-08 12:00:00,No
+17,884,Accident,High,Airport,2025-01-09 00:00:00,No
+18,912,Theft,Medium,Market,2025-01-09 12:00:00,Yes
+19,232,Lost Item,Low,Hotel,2025-01-10 00:00:00,Yes
+20,330,Medical Emergency,High,Monument,2025-01-10 12:00:00,No
+21,787,Accident,Medium,Monument,2025-01-11 00:00:00,No
+22,888,Lost Item,Medium,Beach,2025-01-11 12:00:00,Yes
+23,392,Crowd Issue,Low,Hotel,2025-01-12 00:00:00,No
+24,410,Accident,High,Beach,2025-01-12 12:00:00,Yes
+25,676,Crowd Issue,Low,Airport,2025-01-13 00:00:00,Yes
+26,736,Crowd Issue,High,Market,2025-01-13 12:00:00,No
+27,541,Accident,High,Monument,2025-01-14 00:00:00,Yes
+28,385,Theft,Low,Market,2025-01-14 12:00:00,Yes
+29,255,Accident,Medium,Airport,2025-01-15 00:00:00,Yes
+30,525,Accident,High,Market,2025-01-15 12:00:00,No
+31,992,Theft,Low,Monument,2025-01-16 00:00:00,No
+32,290,Theft,Low,Airport,2025-01-16 12:00:00,Yes
+33,642,Crowd Issue,Low,Airport,2025-01-17 00:00:00,Yes
+34,61,Crowd Issue,Medium,Hotel,2025-01-17 12:00:00,No
+35,56,Lost Item,Low,Hotel,2025-01-18 00:00:00,No
+36,327,Lost Item,High,Airport,2025-01-18 12:00:00,Yes
+37,866,Accident,Low,Airport,2025-01-19 00:00:00,No
+38,210,Accident,High,Beach,2025-01-19 12:00:00,No
+39,647,Crowd Issue,Medium,Airport,2025-01-20 00:00:00,No
+40,303,Crowd Issue,Low,Monument,2025-01-20 12:00:00,Yes
+41,834,Medical Emergency,Low,Monument,2025-01-21 00:00:00,No
+42,375,Theft,High,Monument,2025-01-21 12:00:00,No
+43,944,Medical Emergency,High,Market,2025-01-22 00:00:00,Yes
+44,218,Theft,Low,Market,2025-01-22 12:00:00,No
+45,587,Lost Item,Medium,Market,2025-01-23 00:00:00,No
+46,420,Theft,Low,Beach,2025-01-23 12:00:00,Yes
+47,193,Medical Emergency,Low,Market,2025-01-24 00:00:00,Yes
+48,251,Crowd Issue,Medium,Airport,2025-01-24 12:00:00,Yes
+49,284,Lost Item,High,Market,2025-01-25 00:00:00,Yes
+50,994,Crowd Issue,Low,Market,2025-01-25 12:00:00,Yes
+51,546,Accident,High,Market,2025-01-26 00:00:00,Yes
+52,260,Lost Item,Low,Airport,2025-01-26 12:00:00,No
+53,901,Lost Item,Low,Airport,2025-01-27 00:00:00,No
+54,834,Lost Item,High,Monument,2025-01-27 12:00:00,No
+55,11,Crowd Issue,Medium,Hotel,2025-01-28 00:00:00,Yes
+56,810,Accident,High,Monument,2025-01-28 12:00:00,Yes
+57,313,Crowd Issue,Medium,Market,2025-01-29 00:00:00,Yes
+58,430,Lost Item,Medium,Airport,2025-01-29 12:00:00,Yes
+59,776,Theft,Low,Monument,2025-01-30 00:00:00,No
+60,134,Medical Emergency,Medium,Airport,2025-01-30 12:00:00,Yes
+61,445,Crowd Issue,Medium,Beach,2025-01-31 00:00:00,No
+62,980,Lost Item,Low,Market,2025-01-31 12:00:00,Yes
+63,171,Medical Emergency,Medium,Airport,2025-02-01 00:00:00,Yes
+64,121,Crowd Issue,High,Beach,2025-02-01 12:00:00,Yes
+65,234,Medical Emergency,Low,Airport,2025-02-02 00:00:00,No
+66,385,Crowd Issue,Low,Market,2025-02-02 12:00:00,No
+67,111,Lost Item,Medium,Monument,2025-02-03 00:00:00,Yes
+68,796,Crowd Issue,High,Market,2025-02-03 12:00:00,No
+69,662,Accident,Low,Airport,2025-02-04 00:00:00,Yes
+70,707,Medical Emergency,High,Hotel,2025-02-04 12:00:00,No
+71,108,Lost Item,High,Market,2025-02-05 00:00:00,Yes
+72,677,Lost Item,Medium,Beach,2025-02-05 12:00:00,Yes
+73,951,Medical Emergency,Low,Market,2025-02-06 00:00:00,Yes
+74,814,Lost Item,Medium,Airport,2025-02-06 12:00:00,Yes
+75,609,Lost Item,High,Monument,2025-02-07 00:00:00,No
+76,505,Lost Item,Low,Monument,2025-02-07 12:00:00,No
+77,343,Medical Emergency,High,Beach,2025-02-08 00:00:00,Yes
+78,291,Medical Emergency,Medium,Airport,2025-02-08 12:00:00,Yes
+79,76,Accident,Medium,Monument,2025-02-09 00:00:00,No
+80,863,Medical Emergency,Low,Hotel,2025-02-09 12:00:00,No
+81,342,Lost Item,Low,Market,2025-02-10 00:00:00,Yes
+82,424,Crowd Issue,High,Market,2025-02-10 12:00:00,Yes
+83,453,Lost Item,High,Airport,2025-02-11 00:00:00,Yes
+84,192,Accident,High,Airport,2025-02-11 12:00:00,No
+85,324,Medical Emergency,High,Beach,2025-02-12 00:00:00,Yes
+86,364,Lost Item,High,Hotel,2025-02-12 12:00:00,No
+87,200,Theft,High,Market,2025-02-13 00:00:00,No
+88,521,Theft,Low,Hotel,2025-02-13 12:00:00,Yes
+89,196,Accident,Medium,Airport,2025-02-14 00:00:00,No
+90,199,Theft,High,Market,2025-02-14 12:00:00,Yes
+91,874,Theft,High,Airport,2025-02-15 00:00:00,Yes
+92,792,Accident,Low,Beach,2025-02-15 12:00:00,No
+93,376,Crowd Issue,Medium,Airport,2025-02-16 00:00:00,No
+94,555,Accident,High,Beach,2025-02-16 12:00:00,Yes
+95,331,Crowd Issue,Medium,Monument,2025-02-17 00:00:00,Yes
+96,746,Theft,High,Hotel,2025-02-17 12:00:00,No
+97,588,Theft,Low,Monument,2025-02-18 00:00:00,Yes
+98,977,Crowd Issue,Low,Monument,2025-02-18 12:00:00,Yes
+99,540,Theft,Low,Airport,2025-02-19 00:00:00,No
+100,235,Crowd Issue,High,Monument,2025-02-19 12:00:00,Yes
+101,706,Theft,High,Airport,2025-02-20 00:00:00,Yes
+102,391,Lost Item,Low,Market,2025-02-20 12:00:00,No
+103,801,Accident,Medium,Beach,2025-02-21 00:00:00,No
+104,347,Crowd Issue,Medium,Monument,2025-02-21 12:00:00,No
+105,867,Crowd Issue,Low,Market,2025-02-22 00:00:00,No
+106,609,Lost Item,High,Hotel,2025-02-22 12:00:00,No
+107,107,Crowd Issue,Low,Monument,2025-02-23 00:00:00,Yes
+108,25,Lost Item,High,Monument,2025-02-23 12:00:00,No
+109,727,Lost Item,Medium,Beach,2025-02-24 00:00:00,No
+110,813,Crowd Issue,Low,Airport,2025-02-24 12:00:00,No
+111,972,Medical Emergency,Medium,Beach,2025-02-25 00:00:00,No
+112,447,Lost Item,Low,Monument,2025-02-25 12:00:00,Yes
+113,608,Lost Item,Low,Hotel,2025-02-26 00:00:00,Yes
+114,141,Lost Item,Medium,Beach,2025-02-26 12:00:00,Yes
+115,406,Crowd Issue,Low,Monument,2025-02-27 00:00:00,No
+116,427,Theft,High,Airport,2025-02-27 12:00:00,No
+117,205,Medical Emergency,High,Airport,2025-02-28 00:00:00,No
+118,36,Lost Item,High,Beach,2025-02-28 12:00:00,Yes
+119,37,Medical Emergency,Medium,Beach,2025-03-01 00:00:00,No
+120,630,Theft,Medium,Beach,2025-03-01 12:00:00,Yes
+121,679,Lost Item,Low,Hotel,2025-03-02 00:00:00,No
+122,181,Accident,High,Monument,2025-03-02 12:00:00,Yes
+123,949,Lost Item,Low,Hotel,2025-03-03 00:00:00,No
+124,44,Crowd Issue,High,Airport,2025-03-03 12:00:00,Yes
+125,51,Theft,Medium,Market,2025-03-04 00:00:00,No
+126,499,Accident,Low,Monument,2025-03-04 12:00:00,No
+127,942,Medical Emergency,Medium,Airport,2025-03-05 00:00:00,No
+128,228,Accident,Medium,Beach,2025-03-05 12:00:00,Yes
+129,161,Medical Emergency,Medium,Airport,2025-03-06 00:00:00,No
+130,152,Theft,High,Monument,2025-03-06 12:00:00,No
+131,39,Medical Emergency,High,Beach,2025-03-07 00:00:00,No
+132,861,Accident,Low,Hotel,2025-03-07 12:00:00,Yes
+133,172,Crowd Issue,Medium,Airport,2025-03-08 00:00:00,No
+134,849,Lost Item,Low,Beach,2025-03-08 12:00:00,Yes
+135,910,Accident,Low,Airport,2025-03-09 00:00:00,No
+136,195,Crowd Issue,High,Market,2025-03-09 12:00:00,No
+137,602,Medical Emergency,Medium,Airport,2025-03-10 00:00:00,No
+138,169,Crowd Issue,High,Airport,2025-03-10 12:00:00,No
+139,294,Accident,Low,Beach,2025-03-11 00:00:00,No
+140,939,Crowd Issue,High,Beach,2025-03-11 12:00:00,Yes
+141,241,Accident,High,Hotel,2025-03-12 00:00:00,No
+142,781,Medical Emergency,Low,Hotel,2025-03-12 12:00:00,No
+143,790,Medical Emergency,Medium,Airport,2025-03-13 00:00:00,No
+144,373,Lost Item,High,Beach,2025-03-13 12:00:00,Yes
+145,917,Lost Item,High,Hotel,2025-03-14 00:00:00,Yes
+146,656,Accident,Low,Beach,2025-03-14 12:00:00,Yes
+147,919,Crowd Issue,Low,Market,2025-03-15 00:00:00,No
+148,246,Theft,Medium,Monument,2025-03-15 12:00:00,Yes
+149,285,Accident,Low,Airport,2025-03-16 00:00:00,No
+150,228,Crowd Issue,Low,Airport,2025-03-16 12:00:00,No
+151,277,Theft,High,Airport,2025-03-17 00:00:00,No
+152,810,Crowd Issue,Low,Airport,2025-03-17 12:00:00,No
+153,9,Lost Item,Low,Airport,2025-03-18 00:00:00,Yes
+154,316,Theft,Low,Airport,2025-03-18 12:00:00,No
+155,40,Accident,Medium,Monument,2025-03-19 00:00:00,Yes
+156,885,Accident,Medium,Airport,2025-03-19 12:00:00,Yes
+157,522,Medical Emergency,High,Market,2025-03-20 00:00:00,Yes
+158,866,Crowd Issue,Medium,Beach,2025-03-20 12:00:00,Yes
+159,917,Accident,Medium,Market,2025-03-21 00:00:00,No
+160,725,Theft,Low,Hotel,2025-03-21 12:00:00,No
+161,483,Lost Item,High,Beach,2025-03-22 00:00:00,Yes
+162,251,Accident,Medium,Monument,2025-03-22 12:00:00,Yes
+163,540,Accident,Low,Hotel,2025-03-23 00:00:00,Yes
+164,210,Theft,Medium,Beach,2025-03-23 12:00:00,Yes
+165,263,Medical Emergency,Medium,Hotel,2025-03-24 00:00:00,Yes
+166,395,Medical Emergency,High,Airport,2025-03-24 12:00:00,No
+167,826,Theft,High,Beach,2025-03-25 00:00:00,No
+168,889,Theft,Medium,Market,2025-03-25 12:00:00,Yes
+169,887,Crowd Issue,Medium,Airport,2025-03-26 00:00:00,No
+170,130,Theft,Low,Beach,2025-03-26 12:00:00,Yes
+171,755,Medical Emergency,Medium,Beach,2025-03-27 00:00:00,Yes
+172,494,Medical Emergency,High,Monument,2025-03-27 12:00:00,No
+173,565,Accident,Low,Beach,2025-03-28 00:00:00,No
+174,208,Accident,Medium,Monument,2025-03-28 12:00:00,Yes
+175,68,Accident,High,Market,2025-03-29 00:00:00,Yes
+176,777,Accident,Medium,Airport,2025-03-29 12:00:00,No
+177,230,Crowd Issue,High,Market,2025-03-30 00:00:00,Yes
+178,498,Theft,Medium,Monument,2025-03-30 12:00:00,Yes
+179,446,Theft,High,Monument,2025-03-31 00:00:00,No
+180,862,Medical Emergency,Low,Beach,2025-03-31 12:00:00,Yes
+181,274,Accident,Medium,Airport,2025-04-01 00:00:00,Yes
+182,59,Theft,High,Hotel,2025-04-01 12:00:00,No
+183,405,Lost Item,Low,Market,2025-04-02 00:00:00,No
+184,611,Crowd Issue,Medium,Market,2025-04-02 12:00:00,No
+185,287,Crowd Issue,Low,Airport,2025-04-03 00:00:00,No
+186,481,Lost Item,High,Airport,2025-04-03 12:00:00,Yes
+187,254,Accident,Low,Beach,2025-04-04 00:00:00,Yes
+188,84,Medical Emergency,Low,Market,2025-04-04 12:00:00,Yes
+189,489,Lost Item,Medium,Beach,2025-04-05 00:00:00,Yes
+190,247,Accident,Medium,Hotel,2025-04-05 12:00:00,Yes
+191,67,Theft,Medium,Beach,2025-04-06 00:00:00,No
+192,199,Medical Emergency,Medium,Hotel,2025-04-06 12:00:00,No
+193,481,Crowd Issue,High,Market,2025-04-07 00:00:00,No
+194,850,Lost Item,Low,Hotel,2025-04-07 12:00:00,Yes
+195,818,Lost Item,High,Monument,2025-04-08 00:00:00,No
+196,672,Medical Emergency,Medium,Market,2025-04-08 12:00:00,Yes
+197,319,Crowd Issue,High,Airport,2025-04-09 00:00:00,Yes
+198,473,Crowd Issue,Low,Beach,2025-04-09 12:00:00,Yes
+199,596,Accident,Medium,Monument,2025-04-10 00:00:00,Yes
+200,694,Medical Emergency,Medium,Hotel,2025-04-10 12:00:00,No
+201,380,Crowd Issue,High,Market,2025-04-11 00:00:00,Yes
+202,998,Accident,Medium,Hotel,2025-04-11 12:00:00,Yes
+203,97,Theft,Medium,Airport,2025-04-12 00:00:00,No
+204,295,Medical Emergency,High,Airport,2025-04-12 12:00:00,No
+205,413,Lost Item,Medium,Airport,2025-04-13 00:00:00,Yes
+206,669,Accident,Low,Airport,2025-04-13 12:00:00,No
+207,771,Medical Emergency,Medium,Monument,2025-04-14 00:00:00,No
+208,86,Medical Emergency,High,Hotel,2025-04-14 12:00:00,No
+209,891,Lost Item,Medium,Hotel,2025-04-15 00:00:00,Yes
+210,63,Medical Emergency,High,Airport,2025-04-15 12:00:00,No
+211,124,Lost Item,Low,Monument,2025-04-16 00:00:00,No
+212,367,Accident,Low,Hotel,2025-04-16 12:00:00,No
+213,416,Lost Item,High,Market,2025-04-17 00:00:00,Yes
+214,145,Theft,High,Hotel,2025-04-17 12:00:00,Yes
+215,520,Theft,High,Beach,2025-04-18 00:00:00,No
+216,785,Lost Item,Medium,Monument,2025-04-18 12:00:00,No
+217,328,Crowd Issue,Medium,Airport,2025-04-19 00:00:00,No
+218,331,Crowd Issue,Low,Hotel,2025-04-19 12:00:00,No
+219,2,Theft,Low,Market,2025-04-20 00:00:00,No
+220,789,Lost Item,High,Market,2025-04-20 12:00:00,No
+221,636,Theft,Low,Hotel,2025-04-21 00:00:00,No
+222,919,Theft,High,Beach,2025-04-21 12:00:00,Yes
+223,471,Lost Item,Medium,Beach,2025-04-22 00:00:00,Yes
+224,768,Crowd Issue,Low,Market,2025-04-22 12:00:00,No
+225,121,Accident,High,Hotel,2025-04-23 00:00:00,No
+226,113,Crowd Issue,High,Airport,2025-04-23 12:00:00,No
+227,471,Accident,Medium,Monument,2025-04-24 00:00:00,Yes
+228,39,Lost Item,Medium,Beach,2025-04-24 12:00:00,Yes
+229,174,Lost Item,Medium,Monument,2025-04-25 00:00:00,Yes
+230,759,Crowd Issue,High,Monument,2025-04-25 12:00:00,No
+231,176,Theft,Medium,Hotel,2025-04-26 00:00:00,No
+232,57,Accident,High,Airport,2025-04-26 12:00:00,No
+233,54,Lost Item,High,Monument,2025-04-27 00:00:00,No
+234,777,Crowd Issue,Low,Monument,2025-04-27 12:00:00,Yes
+235,70,Medical Emergency,Medium,Monument,2025-04-28 00:00:00,Yes
+236,229,Medical Emergency,High,Monument,2025-04-28 12:00:00,Yes
+237,510,Medical Emergency,High,Beach,2025-04-29 00:00:00,Yes
+238,480,Accident,High,Beach,2025-04-29 12:00:00,No
+239,191,Crowd Issue,High,Airport,2025-04-30 00:00:00,No
+240,390,Medical Emergency,High,Airport,2025-04-30 12:00:00,Yes
+241,964,Theft,Low,Market,2025-05-01 00:00:00,Yes
+242,759,Lost Item,Low,Airport,2025-05-01 12:00:00,No
+243,102,Lost Item,High,Monument,2025-05-02 00:00:00,No
+244,879,Lost Item,High,Market,2025-05-02 12:00:00,No
+245,562,Theft,High,Monument,2025-05-03 00:00:00,No
+246,569,Medical Emergency,Low,Beach,2025-05-03 12:00:00,Yes
+247,928,Accident,Low,Airport,2025-05-04 00:00:00,Yes
+248,680,Crowd Issue,Medium,Market,2025-05-04 12:00:00,No
+249,306,Crowd Issue,Medium,Hotel,2025-05-05 00:00:00,No
+250,348,Lost Item,High,Airport,2025-05-05 12:00:00,No
+251,183,Medical Emergency,Low,Hotel,2025-05-06 00:00:00,No
+252,861,Accident,Medium,Monument,2025-05-06 12:00:00,Yes
+253,307,Medical Emergency,Medium,Hotel,2025-05-07 00:00:00,No
+254,226,Theft,High,Hotel,2025-05-07 12:00:00,No
+255,258,Lost Item,High,Hotel,2025-05-08 00:00:00,No
+256,835,Accident,Low,Beach,2025-05-08 12:00:00,Yes
+257,248,Lost Item,Medium,Hotel,2025-05-09 00:00:00,No
+258,524,Medical Emergency,High,Monument,2025-05-09 12:00:00,No
+259,179,Crowd Issue,High,Hotel,2025-05-10 00:00:00,No
+260,200,Lost Item,Medium,Monument,2025-05-10 12:00:00,Yes
+261,418,Lost Item,High,Market,2025-05-11 00:00:00,Yes
+262,292,Medical Emergency,Low,Market,2025-05-11 12:00:00,No
+263,123,Theft,High,Hotel,2025-05-12 00:00:00,No
+264,19,Theft,Medium,Monument,2025-05-12 12:00:00,No
+265,899,Lost Item,Low,Beach,2025-05-13 00:00:00,No
+266,756,Accident,Medium,Monument,2025-05-13 12:00:00,No
+267,554,Accident,Medium,Airport,2025-05-14 00:00:00,No
+268,586,Medical Emergency,Medium,Monument,2025-05-14 12:00:00,Yes
+269,417,Crowd Issue,Medium,Beach,2025-05-15 00:00:00,Yes
+270,447,Lost Item,Low,Monument,2025-05-15 12:00:00,No
+271,650,Theft,Medium,Beach,2025-05-16 00:00:00,No
+272,22,Crowd Issue,Low,Hotel,2025-05-16 12:00:00,Yes
+273,547,Accident,High,Hotel,2025-05-17 00:00:00,No
+274,766,Crowd Issue,High,Beach,2025-05-17 12:00:00,Yes
+275,290,Crowd Issue,Medium,Beach,2025-05-18 00:00:00,No
+276,225,Lost Item,Low,Airport,2025-05-18 12:00:00,No
+277,612,Lost Item,Low,Monument,2025-05-19 00:00:00,Yes
+278,88,Theft,High,Beach,2025-05-19 12:00:00,Yes
+279,222,Theft,Low,Market,2025-05-20 00:00:00,No
+280,433,Crowd Issue,Medium,Monument,2025-05-20 12:00:00,Yes
+281,291,Accident,Medium,Market,2025-05-21 00:00:00,No
+282,748,Accident,Low,Hotel,2025-05-21 12:00:00,Yes
+283,360,Lost Item,Low,Beach,2025-05-22 00:00:00,Yes
+284,774,Crowd Issue,Medium,Beach,2025-05-22 12:00:00,No
+285,325,Crowd Issue,High,Monument,2025-05-23 00:00:00,No
+286,753,Medical Emergency,High,Hotel,2025-05-23 12:00:00,No
+287,326,Crowd Issue,High,Beach,2025-05-24 00:00:00,No
+288,795,Medical Emergency,High,Market,2025-05-24 12:00:00,Yes
+289,515,Lost Item,Medium,Airport,2025-05-25 00:00:00,Yes
+290,721,Crowd Issue,High,Airport,2025-05-25 12:00:00,No
+291,290,Lost Item,Low,Monument,2025-05-26 00:00:00,No
+292,606,Accident,High,Beach,2025-05-26 12:00:00,No
+293,985,Crowd Issue,Medium,Beach,2025-05-27 00:00:00,No
+294,933,Theft,Low,Monument,2025-05-27 12:00:00,No
+295,847,Lost Item,High,Market,2025-05-28 00:00:00,No
+296,588,Theft,Low,Monument,2025-05-28 12:00:00,Yes
+297,721,Theft,Medium,Beach,2025-05-29 00:00:00,Yes
+298,130,Medical Emergency,Medium,Market,2025-05-29 12:00:00,Yes
+299,310,Accident,Medium,Airport,2025-05-30 00:00:00,Yes
+300,292,Accident,High,Beach,2025-05-30 12:00:00,Yes
+301,87,Medical Emergency,Low,Monument,2025-05-31 00:00:00,Yes
+302,63,Lost Item,High,Market,2025-05-31 12:00:00,Yes
+303,771,Crowd Issue,High,Market,2025-06-01 00:00:00,Yes
+304,21,Crowd Issue,High,Monument,2025-06-01 12:00:00,Yes
+305,687,Crowd Issue,Medium,Beach,2025-06-02 00:00:00,Yes
+306,226,Lost Item,Low,Monument,2025-06-02 12:00:00,Yes
+307,200,Lost Item,Low,Airport,2025-06-03 00:00:00,No
+308,428,Accident,High,Beach,2025-06-03 12:00:00,No
+309,418,Theft,High,Hotel,2025-06-04 00:00:00,Yes
+310,615,Crowd Issue,High,Beach,2025-06-04 12:00:00,No
+311,462,Theft,Medium,Monument,2025-06-05 00:00:00,Yes
+312,225,Accident,Medium,Market,2025-06-05 12:00:00,No
+313,743,Theft,Low,Hotel,2025-06-06 00:00:00,No
+314,888,Theft,Low,Market,2025-06-06 12:00:00,Yes
+315,863,Accident,High,Beach,2025-06-07 00:00:00,Yes
+316,320,Crowd Issue,High,Hotel,2025-06-07 12:00:00,No
+317,169,Lost Item,Medium,Hotel,2025-06-08 00:00:00,No
+318,74,Medical Emergency,Low,Market,2025-06-08 12:00:00,No
+319,778,Theft,High,Hotel,2025-06-09 00:00:00,No
+320,209,Medical Emergency,High,Hotel,2025-06-09 12:00:00,No
+321,689,Theft,Low,Hotel,2025-06-10 00:00:00,Yes
+322,744,Theft,Medium,Market,2025-06-10 12:00:00,No
+323,93,Lost Item,Medium,Airport,2025-06-11 00:00:00,Yes
+324,766,Theft,High,Beach,2025-06-11 12:00:00,No
+325,753,Medical Emergency,Low,Market,2025-06-12 00:00:00,Yes
+326,451,Lost Item,Low,Beach,2025-06-12 12:00:00,Yes
+327,29,Accident,Medium,Monument,2025-06-13 00:00:00,No
+328,790,Accident,Medium,Beach,2025-06-13 12:00:00,No
+329,897,Accident,Medium,Airport,2025-06-14 00:00:00,Yes
+330,46,Lost Item,Medium,Monument,2025-06-14 12:00:00,No
+331,12,Accident,Medium,Hotel,2025-06-15 00:00:00,No
+332,868,Theft,High,Beach,2025-06-15 12:00:00,Yes
+333,64,Lost Item,Medium,Hotel,2025-06-16 00:00:00,Yes
+334,366,Lost Item,Medium,Hotel,2025-06-16 12:00:00,No
+335,952,Crowd Issue,Medium,Airport,2025-06-17 00:00:00,Yes
+336,525,Accident,High,Market,2025-06-17 12:00:00,Yes
+337,554,Crowd Issue,High,Beach,2025-06-18 00:00:00,Yes
+338,920,Crowd Issue,High,Hotel,2025-06-18 12:00:00,No
+339,626,Crowd Issue,Medium,Market,2025-06-19 00:00:00,Yes
+340,313,Lost Item,Medium,Airport,2025-06-19 12:00:00,Yes
+341,654,Theft,High,Market,2025-06-20 00:00:00,Yes
+342,139,Medical Emergency,Low,Airport,2025-06-20 12:00:00,Yes
+343,508,Lost Item,High,Airport,2025-06-21 00:00:00,No
+344,630,Theft,High,Airport,2025-06-21 12:00:00,Yes
+345,502,Medical Emergency,High,Market,2025-06-22 00:00:00,Yes
+346,878,Lost Item,Medium,Hotel,2025-06-22 12:00:00,No
+347,326,Accident,Low,Airport,2025-06-23 00:00:00,No
+348,906,Lost Item,Low,Market,2025-06-23 12:00:00,No
+349,268,Theft,High,Hotel,2025-06-24 00:00:00,No
+350,762,Accident,Medium,Hotel,2025-06-24 12:00:00,Yes
+351,108,Lost Item,Medium,Airport,2025-06-25 00:00:00,No
+352,142,Medical Emergency,High,Market,2025-06-25 12:00:00,Yes
+353,416,Medical Emergency,Low,Market,2025-06-26 00:00:00,Yes
+354,342,Crowd Issue,Medium,Beach,2025-06-26 12:00:00,No
+355,287,Accident,Medium,Monument,2025-06-27 00:00:00,No
+356,332,Lost Item,Medium,Airport,2025-06-27 12:00:00,No
+357,258,Medical Emergency,Low,Airport,2025-06-28 00:00:00,Yes
+358,348,Crowd Issue,Medium,Market,2025-06-28 12:00:00,No
+359,451,Theft,Medium,Monument,2025-06-29 00:00:00,No
+360,576,Accident,High,Beach,2025-06-29 12:00:00,Yes
+361,28,Lost Item,Medium,Airport,2025-06-30 00:00:00,No
+362,999,Lost Item,Low,Airport,2025-06-30 12:00:00,Yes
+363,377,Lost Item,Low,Beach,2025-07-01 00:00:00,Yes
+364,650,Lost Item,Medium,Hotel,2025-07-01 12:00:00,No
+365,693,Accident,High,Monument,2025-07-02 00:00:00,No
+366,771,Accident,Medium,Beach,2025-07-02 12:00:00,Yes
+367,652,Lost Item,Medium,Airport,2025-07-03 00:00:00,Yes
+368,663,Lost Item,Low,Monument,2025-07-03 12:00:00,Yes
+369,290,Crowd Issue,High,Market,2025-07-04 00:00:00,Yes
+370,593,Lost Item,Low,Beach,2025-07-04 12:00:00,Yes
+371,782,Lost Item,High,Beach,2025-07-05 00:00:00,Yes
+372,168,Medical Emergency,High,Market,2025-07-05 12:00:00,Yes
+373,195,Medical Emergency,High,Airport,2025-07-06 00:00:00,No
+374,936,Medical Emergency,Medium,Market,2025-07-06 12:00:00,Yes
+375,248,Crowd Issue,Medium,Hotel,2025-07-07 00:00:00,Yes
+376,652,Theft,Low,Monument,2025-07-07 12:00:00,No
+377,634,Lost Item,Low,Hotel,2025-07-08 00:00:00,No
+378,996,Medical Emergency,Medium,Monument,2025-07-08 12:00:00,No
+379,187,Medical Emergency,Low,Hotel,2025-07-09 00:00:00,Yes
+380,847,Accident,Medium,Beach,2025-07-09 12:00:00,No
+381,343,Lost Item,Low,Airport,2025-07-10 00:00:00,Yes
+382,231,Crowd Issue,Low,Market,2025-07-10 12:00:00,Yes
+383,391,Medical Emergency,High,Beach,2025-07-11 00:00:00,Yes
+384,191,Medical Emergency,Medium,Market,2025-07-11 12:00:00,No
+385,659,Lost Item,Low,Beach,2025-07-12 00:00:00,No
+386,954,Theft,High,Hotel,2025-07-12 12:00:00,Yes
+387,27,Medical Emergency,Medium,Monument,2025-07-13 00:00:00,No
+388,855,Medical Emergency,Medium,Monument,2025-07-13 12:00:00,Yes
+389,37,Crowd Issue,High,Beach,2025-07-14 00:00:00,Yes
+390,261,Medical Emergency,High,Hotel,2025-07-14 12:00:00,No
+391,426,Lost Item,High,Market,2025-07-15 00:00:00,Yes
+392,27,Theft,High,Hotel,2025-07-15 12:00:00,Yes
+393,413,Theft,High,Market,2025-07-16 00:00:00,No
+394,152,Accident,Low,Market,2025-07-16 12:00:00,Yes
+395,84,Theft,High,Monument,2025-07-17 00:00:00,Yes
+396,878,Medical Emergency,High,Hotel,2025-07-17 12:00:00,No
+397,421,Accident,High,Monument,2025-07-18 00:00:00,Yes
+398,184,Accident,Low,Beach,2025-07-18 12:00:00,Yes
+399,184,Medical Emergency,Low,Airport,2025-07-19 00:00:00,No
+400,249,Theft,Low,Monument,2025-07-19 12:00:00,Yes
+401,903,Medical Emergency,Low,Monument,2025-07-20 00:00:00,Yes
+402,567,Crowd Issue,Medium,Hotel,2025-07-20 12:00:00,No
+403,475,Theft,Low,Monument,2025-07-21 00:00:00,Yes
+404,803,Accident,Medium,Beach,2025-07-21 12:00:00,Yes
+405,381,Accident,High,Monument,2025-07-22 00:00:00,No
+406,109,Accident,Low,Hotel,2025-07-22 12:00:00,No
+407,149,Accident,Low,Beach,2025-07-23 00:00:00,Yes
+408,927,Accident,High,Airport,2025-07-23 12:00:00,Yes
+409,296,Crowd Issue,Medium,Beach,2025-07-24 00:00:00,Yes
+410,253,Crowd Issue,Medium,Monument,2025-07-24 12:00:00,No
+411,679,Crowd Issue,High,Airport,2025-07-25 00:00:00,No
+412,442,Lost Item,Low,Airport,2025-07-25 12:00:00,No
+413,382,Accident,Medium,Hotel,2025-07-26 00:00:00,No
+414,48,Medical Emergency,Low,Hotel,2025-07-26 12:00:00,Yes
+415,478,Crowd Issue,Low,Monument,2025-07-27 00:00:00,Yes
+416,444,Theft,Medium,Monument,2025-07-27 12:00:00,No
+417,977,Medical Emergency,Low,Hotel,2025-07-28 00:00:00,No
+418,169,Crowd Issue,Medium,Beach,2025-07-28 12:00:00,No
+419,8,Accident,High,Market,2025-07-29 00:00:00,No
+420,371,Accident,Low,Airport,2025-07-29 12:00:00,Yes
+421,417,Accident,High,Beach,2025-07-30 00:00:00,No
+422,66,Lost Item,Medium,Airport,2025-07-30 12:00:00,No
+423,701,Lost Item,Medium,Airport,2025-07-31 00:00:00,No
+424,108,Medical Emergency,Medium,Market,2025-07-31 12:00:00,Yes
+425,482,Medical Emergency,High,Monument,2025-08-01 00:00:00,No
+426,163,Medical Emergency,High,Monument,2025-08-01 12:00:00,No
+427,668,Medical Emergency,Medium,Monument,2025-08-02 00:00:00,No
+428,388,Theft,Low,Airport,2025-08-02 12:00:00,No
+429,196,Lost Item,Medium,Monument,2025-08-03 00:00:00,No
+430,213,Theft,Medium,Monument,2025-08-03 12:00:00,No
+431,621,Lost Item,Low,Airport,2025-08-04 00:00:00,No
+432,441,Medical Emergency,Medium,Hotel,2025-08-04 12:00:00,No
+433,128,Lost Item,Medium,Hotel,2025-08-05 00:00:00,No
+434,536,Crowd Issue,Low,Market,2025-08-05 12:00:00,No
+435,674,Crowd Issue,Low,Hotel,2025-08-06 00:00:00,No
+436,840,Medical Emergency,Medium,Hotel,2025-08-06 12:00:00,No
+437,35,Medical Emergency,High,Market,2025-08-07 00:00:00,Yes
+438,783,Theft,High,Airport,2025-08-07 12:00:00,No
+439,948,Theft,Low,Airport,2025-08-08 00:00:00,No
+440,372,Theft,High,Hotel,2025-08-08 12:00:00,Yes
+441,799,Medical Emergency,Low,Beach,2025-08-09 00:00:00,No
+442,411,Medical Emergency,High,Airport,2025-08-09 12:00:00,No
+443,679,Crowd Issue,Low,Market,2025-08-10 00:00:00,Yes
+444,680,Crowd Issue,Low,Airport,2025-08-10 12:00:00,No
+445,152,Theft,Medium,Airport,2025-08-11 00:00:00,Yes
+446,683,Medical Emergency,Medium,Market,2025-08-11 12:00:00,Yes
+447,92,Lost Item,Low,Airport,2025-08-12 00:00:00,Yes
+448,354,Medical Emergency,High,Airport,2025-08-12 12:00:00,Yes
+449,405,Accident,Medium,Market,2025-08-13 00:00:00,Yes
+450,208,Theft,High,Airport,2025-08-13 12:00:00,No
+451,493,Lost Item,High,Market,2025-08-14 00:00:00,No
+452,396,Crowd Issue,High,Monument,2025-08-14 12:00:00,No
+453,389,Medical Emergency,Medium,Market,2025-08-15 00:00:00,Yes
+454,351,Theft,High,Hotel,2025-08-15 12:00:00,Yes
+455,582,Lost Item,Medium,Beach,2025-08-16 00:00:00,No
+456,444,Theft,High,Monument,2025-08-16 12:00:00,Yes
+457,704,Medical Emergency,High,Airport,2025-08-17 00:00:00,Yes
+458,577,Crowd Issue,Low,Monument,2025-08-17 12:00:00,Yes
+459,146,Medical Emergency,Medium,Monument,2025-08-18 00:00:00,No
+460,380,Lost Item,Medium,Monument,2025-08-18 12:00:00,No
+461,900,Theft,Medium,Market,2025-08-19 00:00:00,No
+462,52,Crowd Issue,High,Market,2025-08-19 12:00:00,Yes
+463,161,Theft,High,Monument,2025-08-20 00:00:00,Yes
+464,449,Theft,Medium,Hotel,2025-08-20 12:00:00,No
+465,251,Medical Emergency,High,Monument,2025-08-21 00:00:00,No
+466,482,Theft,Medium,Hotel,2025-08-21 12:00:00,Yes
+467,187,Crowd Issue,High,Beach,2025-08-22 00:00:00,Yes
+468,875,Lost Item,Medium,Beach,2025-08-22 12:00:00,No
+469,947,Theft,Low,Airport,2025-08-23 00:00:00,Yes
+470,833,Lost Item,Medium,Market,2025-08-23 12:00:00,No
+471,109,Accident,Low,Beach,2025-08-24 00:00:00,Yes
+472,196,Medical Emergency,Medium,Hotel,2025-08-24 12:00:00,Yes
+473,194,Theft,Medium,Monument,2025-08-25 00:00:00,No
+474,528,Crowd Issue,High,Beach,2025-08-25 12:00:00,Yes
+475,967,Lost Item,High,Hotel,2025-08-26 00:00:00,No
+476,785,Crowd Issue,Medium,Market,2025-08-26 12:00:00,Yes
+477,176,Accident,High,Monument,2025-08-27 00:00:00,No
+478,378,Accident,High,Market,2025-08-27 12:00:00,Yes
+479,450,Medical Emergency,Low,Beach,2025-08-28 00:00:00,No
+480,229,Crowd Issue,Medium,Hotel,2025-08-28 12:00:00,Yes
+481,652,Lost Item,Low,Beach,2025-08-29 00:00:00,Yes
+482,913,Accident,Medium,Beach,2025-08-29 12:00:00,No
+483,184,Accident,Medium,Hotel,2025-08-30 00:00:00,No
+484,563,Medical Emergency,High,Beach,2025-08-30 12:00:00,No
+485,228,Accident,High,Market,2025-08-31 00:00:00,Yes
+486,47,Accident,Medium,Airport,2025-08-31 12:00:00,Yes
+487,427,Theft,Medium,Monument,2025-09-01 00:00:00,Yes
+488,27,Lost Item,Low,Hotel,2025-09-01 12:00:00,Yes
+489,41,Theft,Medium,Market,2025-09-02 00:00:00,No
+490,441,Theft,Low,Monument,2025-09-02 12:00:00,No
+491,421,Crowd Issue,Low,Beach,2025-09-03 00:00:00,Yes
+492,337,Accident,High,Market,2025-09-03 12:00:00,Yes
+493,531,Medical Emergency,Low,Market,2025-09-04 00:00:00,No
+494,936,Crowd Issue,Medium,Airport,2025-09-04 12:00:00,Yes
+495,329,Medical Emergency,Medium,Market,2025-09-05 00:00:00,Yes
+496,9,Medical Emergency,High,Airport,2025-09-05 12:00:00,Yes
+497,446,Lost Item,High,Beach,2025-09-06 00:00:00,No
+498,476,Lost Item,Low,Hotel,2025-09-06 12:00:00,No
+499,285,Crowd Issue,High,Market,2025-09-07 00:00:00,Yes
+500,494,Theft,Medium,Monument,2025-09-07 12:00:00,Yes
