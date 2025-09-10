@@ -1,0 +1,38 @@
+{
+  "users": [
+    {
+      "name": "Rohit Sharma",
+      "email": "rohit@example.com",
+      "phone": "+919900112233",
+      "roles": ["user"]
+    },
+    {
+      "name": "Priya Patel",
+      "email": "priya@example.com",
+      "phone": "+919812345678",
+      "roles": ["admin"]
+    }
+  ],
+  "alerts": [
+    {
+      "title": "Lost wallet",
+      "description": "Wallet lost near gate 2",
+      "userId": null,
+      "location": {
+        "latitude": 19.0760,
+        "longitude": 72.8777,
+        "address": "Mumbai central"
+      }
+    },
+    {
+      "title": "Suspicious person",
+      "description": "Person acting suspicious near beach",
+      "userId": null,
+      "location": {
+        "latitude": 12.9716,
+        "longitude": 77.5946,
+        "address": "Bangalore beach area"
+      }
+    }
+  ]
+}
