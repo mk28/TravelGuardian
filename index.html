@@ -15,11 +15,12 @@
       font-family: 'Inter', sans-serif;
       color: white;
       scroll-behavior: smooth;
-      background: #0a0f1c;
+      /* FIXED: Set to transparent so only the video shows through */
+      background: transparent;
       overflow-x: hidden;
     }
 
-    /* Background Video / Galaxy */
+    /* Backgrounds */
     #bg-video {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
@@ -27,13 +28,10 @@
     #overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); z-index: -1;
+      transition: background 0.5s ease;
     }
     .galaxy-bg {
-      background: url("https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop") no-repeat center center/cover;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -2;
+      background: url("https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop") no-repeat center center/cover !important;
     }
 
     /* Header */
@@ -43,10 +41,32 @@
       backdrop-filter: blur(6px); position: sticky; top: 0; z-index: 10;
     }
     .logo-container { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.2rem; }
-    .logo-container img { height: 42px; filter: brightness(1.5); }
+    .logo-container img { 
+        height: 42px; 
+        filter: invert(1);
+    }
     .search-bar { flex: 1; margin: 0 2rem; max-width: 600px; }
     .search-bar input { width: 100%; padding: 0.8rem 1.2rem; border-radius: 30px; border: none; font-size: 1rem; outline: none; background: rgba(255,255,255,0.1); color:white; }
-    .icons { display: flex; gap: 1rem; font-size: 1.2rem; cursor: pointer; }
+    .icons { display: flex; gap: 1rem; font-size: 1.2rem; align-items: center; }
+    .icons span { cursor: pointer; position: relative; }
+    
+    /* Notification Panel */
+    #notification-dot {
+        position: absolute; top: -2px; right: -4px; width: 10px; height: 10px;
+        background-color: #ff512f; border-radius: 50%; border: 2px solid #0a0f1c; display: block;
+    }
+    #notification-panel {
+        display: none; position: absolute; top: 60px; right: 2rem; width: 350px;
+        max-height: 400px; overflow-y: auto; background: rgba(10, 20, 40, 0.95);
+        backdrop-filter: blur(10px); border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        z-index: 100; border: 1px solid rgba(0, 224, 255, 0.3);
+    }
+    .notification-header { padding: 1rem; font-size: 1.1rem; font-weight: 600; color: #00e0ff; border-bottom: 1px solid rgba(0, 224, 255, 0.2); }
+    .notification-item { display: flex; padding: 1rem; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .notification-item-icon { font-size: 1.5rem; }
+    .notification-item-content p { margin: 0; font-size: 0.9rem; line-height: 1.4; }
+    .notification-item-content .time { font-size: 0.75rem; color: #aaa; margin-top: 0.3rem; }
+    .notification-footer { text-align: center; padding: 0.8rem; font-size: 0.85rem; color: #00e0ff; cursor: pointer; }
 
     /* Sidebar */
     .sidebar {
@@ -61,20 +81,38 @@
     .hero h2 { font-family:'Playfair Display', serif; font-size:3rem; margin-bottom:1rem; color:#00e0ff; text-shadow:0 0 15px #00e0ff; }
     .hero p { font-size:1.2rem; margin-bottom:2rem; color:#ddd; }
     .hero .buttons { display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; }
-    .hero button { padding:1rem 2rem; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1rem; min-width:200px; transition: transform 0.2s; }
-    .btn-blue { background: linear-gradient(to right,#00c6ff,#0072ff); color:white; box-shadow:0 0 12px #00c6ff; }
-    .btn-blue:hover { transform: scale(1.05); }
-    .btn-red { background: linear-gradient(to right,#ff512f,#dd2476); color:white; box-shadow:0 0 12px #ff512f; }
+    .hero button, .btn-blue, .btn-red { padding:1rem 2rem; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1rem; min-width:200px; transition: transform 0.2s, background 0.3s; }
+    
+    .btn-blue {
+        background: transparent;
+        color: #00e0ff;
+        box-shadow: 0 0 12px #00c6ff;
+        border: 2px solid #00c6ff;
+    }
+    .btn-blue:hover { 
+        transform: scale(1.05);
+        background: rgba(0, 198, 255, 0.2);
+    }
+
+    .btn-red { 
+        background: linear-gradient(to right,#ff512f,#dd2476); 
+        color:white; 
+        box-shadow:0 0 12px #ff512f; 
+        border: none;
+    }
     .btn-red:hover { transform: scale(1.05); }
 
     /* Extra Sections */
     .extra-sections { margin-left:220px; padding:2rem; display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
     .card { background: rgba(0,0,0,0.6); padding:1.5rem; border-radius:12px; box-shadow:0 0 10px rgba(0,255,255,0.3); }
     .card h3 { margin-bottom:1rem; color:#00e0ff; }
-    .experience-input { width:100%; padding:0.8rem; border-radius:8px; border:none; margin-bottom:1rem; background: rgba(255,255,255,0.1); color:white; }
     .experience-btn { background:#00e0ff; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:bold; color:black; }
-    .post { margin-top:1rem; padding:0.8rem; background: rgba(255,255,255,0.1); border-radius:8px; color:#ddd; }
-
+    .post { margin-top:1rem; padding:1rem; background: rgba(255,255,255,0.08); border-radius:8px; color:#ddd; border-left: 3px solid #00e0ff; }
+    .post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .post-author { font-weight: bold; font-size: 0.95rem; }
+    .post-rating { color: #ffc107; }
+    .post-body { font-size: 0.9rem; }
+    
     /* Map */
     #map { width:100%; height:300px; border-radius:12px; }
 
@@ -82,22 +120,49 @@
     footer { text-align:center; padding:1rem; background: rgba(0,0,0,0.7); margin-top:2rem; margin-left:220px; font-size:0.9rem; color:#aaa; }
 
     /* Modal Styles (Shared) */
-    .modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:none; justify-content:center; align-items:center; z-index:20; }
-    .modal-card { background: rgba(10, 20, 40, 0.95); padding:2rem; border-radius:12px; width:90%; max-width:500px; position:relative; box-shadow:0 0 20px #00e0ff; animation:fadeIn 0.5s; }
-    .modal-card input, .modal-card textarea { width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:8px; border:none; background: rgba(255,255,255,0.1); color:white; }
-    .modal-card button { margin:0.5rem 0; width:100%; padding:0.8rem; border:none; border-radius:8px; cursor:pointer; font-weight:bold; }
+    .modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:none; justify-content:center; align-items:center; z-index:20; overflow-y: auto; padding: 4rem 0; }
+    .modal-card { background: rgba(10, 20, 40, 0.95); padding:2rem; border-radius:12px; width:90%; max-width:600px; position:relative; box-shadow:0 0 20px #00e0ff; animation:fadeIn 0.5s; margin: auto; }
+    .modal-card input, .modal-card textarea, .modal-card select { width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:8px; border:none; background: rgba(255,255,255,0.1); color:white; }
+    .modal-card button { margin:0.5rem 0; width:100%; padding:0.8rem; border-radius:8px; cursor:pointer; font-weight:bold; }
     .btn-save { background:#00e0ff; color:black; }
     .btn-remove { background:#ff512f; color:white; }
+    .modal-note { font-size: 0.9rem; color: #ccc; margin-top: 1.5rem; text-align: center; }
+
+    /* Profile Modal Specifics */
     #profile-photo { display:block; margin:0 auto 1rem auto; width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid #00e0ff; }
     #user-name { text-align:center; font-size:1.3rem; margin-bottom:1rem; color:#00e0ff; }
+    #profile-card h4 { margin-top: 1.5rem; margin-bottom: 0.5rem; color: #00e0ff; }
     
-    /* Emergency Contacts Modal Specifics */
+    /* Emergency List (Used in two modals) */
     .emergency-list { list-style: none; padding: 0; }
     .emergency-list li { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
     .emergency-list li:last-child { border-bottom: none; }
     .emergency-list span:first-child { font-weight: bold; }
     .emergency-list span:last-child { font-weight: 600; color: #00e0ff; letter-spacing: 1px; }
-    .emergency-note { font-size: 0.9rem; color: #ccc; margin-top: 1.5rem; text-align: center; }
+
+    /* Other shared styles for lists, tips, etc. */
+    .crowd-level, .route-status { padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.85rem; }
+    .list-style-shared { list-style: none; padding: 0; }
+    .list-style-shared li { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    .crowd-level.low, .route-status.clear { background-color: #00e0ff; color: #0a0f1c; }
+    .crowd-level.moderate, .route-status.congestion { background-color: #ffc107; color: #0a0f1c; }
+    .crowd-level.high, .route-status.closed { background-color: #ff512f; color: white; }
+    .tip-item { padding: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .tip-item strong { color: #00e0ff; }
+
+    /* Search Modal Styles */
+    #search-results-modal .modal-card { max-width: 800px; }
+    .tripadvisor-link { display: block; text-align: center; margin: -1rem auto 2rem auto; padding: 0.7rem 1.5rem; background: #34e0a1; color: black; border-radius: 20px; text-decoration: none; font-weight: bold; transition: transform 0.2s; }
+    .results-section { margin-bottom: 2rem; }
+    .results-section h3 { color: #00e0ff; border-bottom: 1px solid #00e0ff; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+    .result-item { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; }
+    .result-item h4 { margin-bottom: 0.3rem; color: #fff; }
+    .result-item p { font-size: 0.9rem; color: #ddd; line-height: 1.5; }
+    .visual-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .visual-item img { width: 150px; height: 100px; object-fit: cover; border-radius: 8px; }
+    .close-btn { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; color: white; cursor: pointer; background: none; border: none; z-index: 1; }
+    .loader { border: 5px solid #f3f3f3; border-radius: 50%; border-top: 5px solid #00e0ff; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 2rem auto; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
     #save-msg { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background: rgba(0,0,0,0.8); padding:1rem 2rem; border-radius:10px; color:#00e0ff; display:none; z-index:30; font-size:1.2rem; opacity:0; transition:opacity 0.5s; }
     @keyframes fadeIn { from {opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);} }
@@ -107,7 +172,7 @@
 <body>
 
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="background.mp4" type="video/mp4" />
+    <source src="galaxy.mp4" type="video/mp4" />
   </video>
   <div id="overlay"></div>
 
@@ -116,38 +181,49 @@
       <img src="logo.png" alt="Safety Logo"> Smart Tourist Safety
     </div>
     <div class="search-bar">
-      <input type="text" placeholder="Search tourist spots, alerts, or safety guides...">
+      <input type="text" id="search-input" placeholder="Search for places like 'Nainital' or 'Mussoorie'...">
     </div>
     <div class="icons">
-      <span id="notification">🔔</span>
+      <span id="notification-icon">🔔<span id="notification-dot"></span></span>
       <span id="profile">👤</span>
       <span id="settings">⚙️</span>
     </div>
   </header>
+  
+  <div id="notification-panel">
+    <div class="notification-header">Notifications</div>
+    <div id="notification-list"></div>
+    <div class="notification-footer" id="mark-all-read">Mark all as read</div>
+  </div>
 
   <div class="sidebar">
-    <a href="#">Safe Routes</a>
+    <a href="#" id="safe-routes-link">Safe Routes</a>
     <a href="#" id="emergency-contacts-link">Emergency Contacts</a>
-    <a href="#" id="nearby-hospitals">Nearby Hospitals</a>
-    <a href="#">Crowd Alerts</a>
-    <a href="#">Travel Tips</a>
+    <a href="#" id="nearby-hospitals-link">Nearby Hospitals</a>
+    <a href="#" id="crowd-alerts-link">Crowd Alerts</a>
+    <a href="#" id="travel-tips-link">Travel Tips</a>
   </div>
 
   <section class="hero">
     <h2>Travel Smarter. Stay Safer.</h2>
     <p>Real-time safety alerts, smart navigation, and secure exploration for every traveler.</p>
     <div class="buttons">
-      <button class="btn-blue">Explore Safe Routes</button>
-      <button class="btn-red">Report Incident</button>
+      <button class="btn-blue" id="explore-safe-routes-btn">Explore Safe Routes</button>
+      <button class="btn-red" id="report-incident-btn">Report Incident</button>
     </div>
   </section>
 
   <section class="extra-sections">
     <div class="card">
       <h3>Share Your Experience</h3>
-      <textarea class="experience-input" placeholder="Share your travel experience..."></textarea>
-      <button class="experience-btn" onclick="postExperience()">Post</button>
-      <div id="experience-feed"></div>
+      <p style="font-size:0.9rem; color:#ccc; margin-bottom:1rem;">Help fellow travelers by sharing your journey, safety tips, and ratings.</p>
+      <button class="experience-btn" onclick="openModal('share-experience-modal')">Post Your Experience</button>
+      <div id="experience-feed">
+        <div class="post">
+          <div class="post-header"><span class="post-author">Alex Doe</span><span class="post-rating">★★★★☆</span></div>
+          <p class="post-body">The trek to Valley of Flowers was breathtaking! The route was a bit slippery due to recent rains, so wear good shoes. Felt very safe overall.</p>
+        </div>
+      </div>
     </div>
     <div class="card">
       <h3>Disastrous Areas Near You</h3>
@@ -167,22 +243,23 @@
       <input type="date" id="reg-dob" placeholder="Date of Birth">
       <input type="text" id="reg-nationality" placeholder="Nationality / Country">
       <input type="tel" id="reg-phone" placeholder="Primary Mobile Number">
-      <input type="file" id="reg-photo" accept="image/*">
+      <label for="reg-photo" style="cursor: pointer; display: block; background: rgba(255,255,255,0.1); padding: 0.8rem; border-radius: 8px; text-align: center; margin: 0.5rem 0;">Upload Profile Photo</label>
+      <input type="file" id="reg-photo" accept="image/*" style="display: none;">
       <button class="btn-save" onclick="registerUser()">Register</button>
       <button class="btn-remove" onclick="closeModal('profile-modal')">Cancel</button>
     </div>
 
     <div class="modal-card" id="profile-card" style="display:none;">
-      <button class="btn-remove" style="position:absolute; top:1rem; right:1rem;" onclick="backToRegistration()">Back</button>
+      <button class="btn-remove" style="position:absolute; top:1rem; right:1rem; padding: 0.5rem 1rem; width: auto; min-width: auto;" onclick="backToRegistration()">Back</button>
       <img src="" id="profile-photo" alt="Profile Photo">
       <div id="user-name"></div>
       <h4>Emergency Contacts (3 Required)</h4>
       <div id="emergency-list"></div>
       <button class="btn-save" onclick="addEmergency()">Add Contact</button>
       <h4>Allergies</h4>
-      <textarea id="allergies" placeholder="List any allergies..."></textarea>
+      <textarea id="allergies" placeholder="List any allergies..." rows="3"></textarea>
       <h4>Pre-existing Medical Conditions</h4>
-      <textarea id="medical" placeholder="List any medical conditions..."></textarea>
+      <textarea id="medical" placeholder="List any medical conditions..." rows="3"></textarea>
       <h4>Travel Insurance</h4>
       <input type="text" id="insurance-provider" placeholder="Provider Name">
       <input type="text" id="insurance-number" placeholder="Policy Number">
@@ -196,7 +273,6 @@
     </div>
   </div>
 
-  <!-- **NEW** Emergency Contacts Modal -->
   <div id="emergency-modal" class="modal">
     <div class="modal-card">
         <h3>Emergency Contacts (Uttarakhand)</h3>
@@ -209,125 +285,157 @@
             <li><span>Women Helpline</span> <span>1091</span></li>
             <li><span>Tourist Police</span> <span>112 / 100</span></li>
         </ul>
-        <p class="emergency-note">For Tourist Police, dial 112 or 100 and ask for assistance.</p>
+        <p class="modal-note">For Tourist Police, dial 112 or 100 and ask for assistance.</p>
         <button class="btn-remove" onclick="closeModal('emergency-modal')">Close</button>
     </div>
   </div>
+    
+  <div id="nearby-hospitals-modal" class="modal">
+     <div class="modal-card">
+        <h3>Find Medical Facilities</h3>
+        <p class="modal-note" style="margin-bottom: 1.5rem; line-height: 1.6;">
+            Click the button below to search for hospitals and clinics near your current location using Google Maps.
+        </p>
+        <a href="https://www.google.com/maps/search/hospitals+near+me" target="_blank" class="btn-blue" style="text-decoration: none; text-align: center; padding: 0.8rem; display: block; border-radius: 8px;">
+            Search on Google Maps
+        </a>
+        <button class="btn-remove" onclick="closeModal('nearby-hospitals-modal')" style="margin-top: 1rem;">Close</button>
+     </div>
+  </div>
+  <div id="crowd-alert-modal" class="modal">
+    <div class="modal-card">
+        <h3>Live Crowd Alerts</h3>
+        <ul class="list-style-shared">
+            <li><span>Kempty Falls, Mussoorie</span> <span class="crowd-level high">High</span></li>
+            <li><span>Robber's Cave, Dehradun</span> <span class="crowd-level moderate">Moderate</span></li>
+            <li><span>Har Ki Pauri, Haridwar</span> <span class="crowd-level high">High</span></li>
+            <li><span>Tapkeshwar Temple</span> <span class="crowd-level low">Low</span></li>
+        </ul>
+        <button class="btn-remove" onclick="closeModal('crowd-alert-modal')">Close</button>
+    </div>
+  </div>
+  <div id="safe-routes-modal" class="modal">
+    <div class="modal-card">
+        <h3>Recommended Safe Routes</h3>
+        <ul class="list-style-shared">
+            <li><span>Dehradun to Mussoorie</span> <span class="route-status clear">Clear</span></li>
+            <li><span>Rishikesh to Badrinath</span> <span class="route-status congestion">Congestion</span></li>
+            <li><span>Chamoli to Joshimath</span> <span class="route-status closed">Closed</span></li>
+        </ul>
+        <button class="btn-remove" onclick="closeModal('safe-routes-modal')">Close</button>
+    </div>
+  </div>
+  <div id="travel-tips-modal" class="modal">
+    <div class="modal-card">
+        <h3>Essential Travel Tips</h3>
+        <div class="tip-item"><strong>Stay Hydrated:</strong> Drink plenty of water, especially at high altitudes.</div>
+        <div class="tip-item"><strong>Weather Awareness:</strong> Mountain weather is unpredictable. Always carry layers.</div>
+        <div class="tip-item"><strong>Respect Local Culture:</strong> Dress modestly when visiting religious sites.</div>
+        <button class="btn-remove" onclick="closeModal('travel-tips-modal')">Close</button>
+    </div>
+  </div>
+  <div id="report-incident-modal" class="modal">
+      <div class="modal-card">
+          <h3>Report an Incident</h3>
+          <select id="incident-type"><option value="">-- Select Incident Type --</option><option value="theft">Theft</option><option value="harassment">Harassment</option><option value="scam">Scam</option><option value="other">Other</option></select>
+          <input type="text" id="incident-location" placeholder="Location of Incident">
+          <textarea id="incident-description" rows="4" placeholder="Describe the incident..."></textarea>
+          <button class="btn-save" onclick="submitIncident()">Submit Report</button>
+          <button class="btn-remove" onclick="closeModal('report-incident-modal')">Cancel</button>
+      </div>
+  </div>
+  <div id="share-experience-modal" class="modal">
+    <div class="modal-card">
+        <h3>Share Your Experience</h3>
+        <textarea id="experience-text" rows="4" placeholder="Share details about your visit..."></textarea>
+        <input type="text" id="experience-author" placeholder="Your Name (e.g., Alex D.)">
+        <select id="experience-rating"><option value="★★★★★">★★★★★</option><option value="★★★★☆">★★★★☆</option><option value="★★★☆☆">★★★☆☆</option><option value="★★☆☆☆">★★☆☆☆</option><option value="★☆☆☆☆">★☆☆☆☆</option></select>
+        <button class="btn-save" onclick="submitExperience()">Post Experience</button>
+        <button class="btn-remove" onclick="closeModal('share-experience-modal')">Cancel</button>
+    </div>
+  </div>
+  <div id="search-results-modal" class="modal">
+    <div class="modal-card">
+        <button class="close-btn" onclick="closeModal('search-results-modal')">×</button>
+        <h2 id="search-results-title" style="text-align: center; margin-bottom: 1rem; color: #00e0ff;"></h2>
+        <a href="#" id="tripadvisor-search-link" target="_blank" class="tripadvisor-link" style="display: none;">Find more on TripAdvisor ↗</a>
+        <div id="loader" class="loader" style="display: none;"></div>
+        <div id="search-results-content">
+            <div class="results-section" id="famous-places"><h3>Famous Places</h3><div id="famous-places-content"></div></div>
+            <div class="results-section" id="latest-news"><h3>Latest News</h3><div id="latest-news-content"></div></div>
+            <div class="results-section" id="things-to-do"><h3>Things to Do</h3><div id="things-to-do-content"></div></div>
+        </div>
+    </div>
+  </div>
 
-
-  <div id="save-msg">Profile Saved Successfully!</div>
+  <div id="save-msg"></div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // --- Modal Functions ---
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = 'flex';
+    // --- MODAL FUNCTIONS ---
+    function openModal(modalId) { document.getElementById(modalId).style.display = 'flex'; }
+    function closeModal(modalId) { 
+        document.getElementById(modalId).style.display = 'none'; 
+        if (modalId === 'profile-modal') {
+            document.getElementById("bg-video").style.display = "block";
+            document.getElementById("overlay").classList.remove("galaxy-bg");
+        }
     }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-    }
-    
-    // Close modal if background is clicked
     window.addEventListener('click', function(event) {
         if (event.target.classList.contains('modal')) {
-            event.target.style.display = 'none';
+            closeModal(event.target.id);
         }
     });
 
-    // --- Event Listeners ---
+    // --- TOAST MESSAGE FUNCTION ---
+    function showToast(message) {
+        const msg = document.getElementById('save-msg');
+        msg.textContent = message;
+        msg.style.display = 'block';
+        msg.style.opacity = '1';
+        setTimeout(() => {
+            msg.style.opacity = '0';
+            setTimeout(() => { msg.style.display = 'none'; }, 500);
+        }, 3000);
+    }
+    
+    // --- EVENT LISTENERS ---
+    document.addEventListener('DOMContentLoaded', () => {
+        populateNotifications();
+    });
+
     document.getElementById("profile").addEventListener("click", function(){
       openModal('profile-modal');
       document.getElementById("bg-video").style.display = "none";
       document.getElementById("overlay").classList.add("galaxy-bg");
     });
     
-    // **NEW** Emergency Contacts Link
-    document.getElementById('emergency-contacts-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        openModal('emergency-modal');
-    });
-
-    // Settings → same tab
     document.getElementById("settings").addEventListener("click", function(){
-      window.location.href="settings.html";
+      window.location.href = "settings.html"; 
     });
 
-    // Post experience
-    function postExperience(){
-      let input = document.querySelector(".experience-input");
-      if(input.value.trim() !== ""){
-        let post = document.createElement("div");
-        post.classList.add("post");
-        post.innerText = input.value;
-        document.getElementById("experience-feed").prepend(post);
-        input.value = "";
-      }
-    }
-    
-    // Find Nearby Hospitals
-    document.getElementById("nearby-hospitals").addEventListener("click", function(e){
-        e.preventDefault();
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(pos => {
-                const lat = pos.coords.latitude;
-                const lng = pos.coords.longitude;
-                const searchUrl = `https://www.google.com/maps/search/hospitals/@${lat},${lng},15z`;
-                window.open(searchUrl, '_blank');
-            }, () => {
-                alert("Could not get your location. Please enable location services.");
-            });
-        } else {
-            alert("Geolocation is not supported by this browser.");
-        }
-    });
+    document.getElementById('emergency-contacts-link').addEventListener('click', (e) => { e.preventDefault(); openModal('emergency-modal'); });
+    document.getElementById('nearby-hospitals-link').addEventListener('click', (e) => { e.preventDefault(); openModal('nearby-hospitals-modal'); });
+    document.getElementById('safe-routes-link').addEventListener('click', (e) => { e.preventDefault(); openModal('safe-routes-modal'); });
+    document.getElementById('crowd-alerts-link').addEventListener('click', (e) => { e.preventDefault(); openModal('crowd-alert-modal'); });
+    document.getElementById('travel-tips-link').addEventListener('click', (e) => { e.preventDefault(); openModal('travel-tips-modal'); });
+    document.getElementById('report-incident-btn').addEventListener("click", () => openModal('report-incident-modal'));
+    document.getElementById('explore-safe-routes-btn').addEventListener("click", () => openModal('safe-routes-modal'));
 
-    // Leaflet Map
-    const map = L.map('map').setView([28.6139,77.2090], 13); // default: Delhi
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
 
-    const disasters = [
-      {name:"Flood Zone A", coords:[28.6150,77.2200]},
-      {name:"Earthquake Risk Zone", coords:[28.6200,77.2100]},
-      {name:"Traffic Accident Prone Area", coords:[28.6100,77.2000]},
-      {name:"Industrial Hazard Area", coords:[28.6250,77.2300]}
-    ];
-
-    disasters.forEach(area => {
-      L.marker(area.coords, {icon: L.icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/564/564619.png',
-        iconSize: [30, 30]
-      })}).addTo(map).bindPopup(area.name);
-    });
-
-    // Show user's current location
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(pos=>{
-        const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
-        map.setView([lat,lng], 13);
-        L.marker([lat,lng], {icon: L.icon({
-          iconUrl: 'https://cdn-icons-png.flaticon.com/512/64/64113.png',
-          iconSize: [30,30]
-        })}).addTo(map).bindPopup("You are here").openPopup();
-      });
-    }
-
-    // --- Profile Functions ---
+    // --- PROFILE FUNCTIONS ---
     function backToRegistration(){
       document.getElementById('profile-card').style.display='none';
       document.getElementById('registration-card').style.display='block';
     }
-
     function registerUser(){
       const name=document.getElementById('reg-name').value;
-      const photo=document.getElementById('reg-photo').files[0];
-      if(!name || !photo){
-        alert('Please enter name and profile photo');
+      const photoInput=document.getElementById('reg-photo');
+      if(!name.trim() || photoInput.files.length === 0){
+        alert('Please enter your full name and upload a profile photo.');
         return;
       }
+      const photo = photoInput.files[0];
       const reader=new FileReader();
       reader.onload=function(e){
         document.getElementById('profile-photo').src=e.target.result;
@@ -337,41 +445,173 @@
       document.getElementById('registration-card').style.display='none';
       document.getElementById('profile-card').style.display='block';
     }
-
     function addEmergency(){
       const list=document.getElementById('emergency-list');
       if(list.children.length>=3){ alert('Maximum 3 contacts allowed'); return; }
-      const contact=prompt('Enter Emergency Contact (Name & Phone)');
-      if(contact) {
-        const div=document.createElement('div'); div.innerText=contact;
+      const contact=prompt('Enter Emergency Contact (e.g., Name - 9876543210)');
+      if(contact && contact.trim() !== '') {
+        const div=document.createElement('div'); 
+        div.innerText=contact;
+        div.style.padding = '0.5rem 0';
         list.appendChild(div);
       }
     }
-
     function addFamilyMember(){
       const list=document.getElementById('family-list');
       const member=prompt('Enter Family Member Name');
-      if(member){
-        const div=document.createElement('div'); div.innerText=member;
+      if(member && member.trim() !== ''){
+        const div=document.createElement('div'); 
+        div.innerText=member;
+        div.style.padding = '0.5rem 0';
         list.appendChild(div);
       }
     }
-
     function saveProfile(){
       const contacts=document.getElementById('emergency-list').children;
-      if(contacts.length<3){ alert('Please add 3 emergency contacts'); return; }
-      const msg=document.getElementById('save-msg');
-      msg.style.display='block';
-      msg.style.opacity='1';
-      setTimeout(()=>{
-        msg.style.opacity='0';
-        setTimeout(()=>{ msg.style.display='none'; },500);
-      },3000);
+      if(contacts.length < 3){ alert('Please add at least 3 emergency contacts.'); return; }
+      showToast('Profile Saved Successfully!');
+      closeModal('profile-modal');
+    }
+    function logout(){ 
+        alert('Logged Out'); 
+        backToRegistration();
+        closeModal('profile-modal');
+    }
+    function deleteAccount(){ 
+        if(confirm('Are you sure you want to delete your account? This action cannot be undone.')){
+            alert('Account Deleted');
+            backToRegistration();
+            closeModal('profile-modal');
+        }
     }
 
-    function logout(){ alert('Logged Out'); }
-    function deleteAccount(){ alert('Account Deleted'); }
+    // --- NOTIFICATION PANEL ---
+    const notificationPanel = document.getElementById('notification-panel');
+    const notificationIcon = document.getElementById('notification-icon');
+    notificationIcon.addEventListener('click', () => {
+        notificationPanel.style.display = notificationPanel.style.display === 'block' ? 'none' : 'block';
+    });
+    document.getElementById('mark-all-read').addEventListener('click', () => {
+        document.getElementById('notification-dot').style.display = 'none';
+    });
+    function populateNotifications() {
+        const list = document.getElementById('notification-list');
+        const notifications = [
+            { icon: '⚠️', text: 'High crowd alert for Kempty Falls.', time: '5 mins ago' },
+            { icon: '⛈️', text: 'Weather Warning: Heavy rainfall expected tomorrow.', time: '1 hour ago' },
+        ];
+        list.innerHTML = notifications.map(n => `<div class="notification-item"><div class="notification-item-icon">${n.icon}</div><div><p>${n.text}</p><div class="time">${n.time}</div></div></div>`).join('');
+    }
 
+    // --- EXPERIENCE SHARING ---
+    function submitExperience() {
+        const text = document.getElementById('experience-text').value;
+        const author = document.getElementById('experience-author').value || "Anonymous";
+        const rating = document.getElementById('experience-rating').value;
+        if (text.trim() === "") return;
+        const feed = document.getElementById("experience-feed");
+        const postDiv = document.createElement("div");
+        postDiv.className = "post";
+        postDiv.innerHTML = `<div class="post-header"><span class="post-author">${author}</span><span class="post-rating">${rating}</span></div><p class="post-body">${text}</p>`;
+        feed.prepend(postDiv);
+        closeModal('share-experience-modal');
+        document.getElementById('experience-text').value = '';
+        document.getElementById('experience-author').value = '';
+        showToast("Experience posted!");
+    }
+    
+    // --- REPORT INCIDENT ---
+    function submitIncident() {
+        const type = document.getElementById('incident-type').value;
+        const location = document.getElementById('incident-location').value;
+        if (!type || !location.trim()) { alert("Please fill all fields."); return; }
+        closeModal('report-incident-modal');
+        showToast("Incident reported. Thank you!");
+    }
+
+    // --- API-FREE SEARCH FUNCTIONALITY ---
+    const mockApiData = {
+        "nainital": {
+            "places": [
+                { "title": "Naini Lake", "description": "The heart of Nainital, this beautiful lake is perfect for boating and evening strolls.", "imageUrl": "https://images.unsplash.com/photo-1605305267443-207590b8f74a?q=80&w=1974&auto=format&fit=crop" },
+                { "title": "Naina Devi Temple", "description": "A sacred temple on the northern shore of Naini Lake, dedicated to Goddess Naina Devi.", "imageUrl": "https://images.unsplash.com/photo-1622373339426-3d715101a1d0?q=80&w=1964&auto=format&fit=crop" },
+                { "title": "Tiffin Top", "description": "A viewpoint that offers a magnificent 360-degree view of the Himalayas and Nainital town.", "imageUrl": "https://images.unsplash.com/photo-1626569107933-4a11f71a415a?q=80&w=1974&auto=format&fit=crop" }
+            ], "news": [ { "title": "Traffic Advisory for Weekends", "description": "Tourists are advised to use public transport during weekends to avoid congestion on Mall Road." }, { "title": "Weather Alert: Light Showers Expected", "description": "Light to moderate rainfall is predicted for the next 48 hours. Carry umbrellas." } ], "activities": [ { "title": "Boating in Naini Lake", "description": "Enjoy a peaceful paddle or rowing boat ride on the serene waters of the lake.", "imageUrl": "https://images.unsplash.com/photo-1571402287316-398638c291b7?q=80&w=1964&auto=format&fit=crop" }, { "title": "Ropeway to Snow View Point", "description": "Take a thrilling cable car ride to get a stunning panoramic view of the snow-capped peaks.", "imageUrl": "https://images.unsplash.com/photo-1597143422341-869153579457?q=80&w=1935&auto=format&fit=crop" } ]
+        },
+        "mussoorie": {
+            "places": [
+                { "title": "Kempty Falls", "description": "A popular and picturesque waterfall, perfect for a refreshing dip.", "imageUrl": "https://images.unsplash.com/photo-1620455808613-9ebc83a0a421?q=80&w=1964&auto=format&fit=crop" },
+                { "title": "Gun Hill", "description": "The second highest point in Mussoorie, offering breathtaking views of the Himalayan ranges.", "imageUrl": "https://images.unsplash.com/photo-1616851210940-b37a1f599723?q=80&w=1935&auto=format&fit=crop" },
+                { "title": "Lal Tibba", "description": "The highest peak in Mussoorie, offering serene landscapes and a glimpse of the old-world charm.", "imageUrl": "https://images.unsplash.com/photo-1620612188688-293c6213a830?q=80&w=1964&auto=format&fit=crop" }
+            ], "news": [ { "title": "New Parking Facility Opened", "description": "A new multi-level parking has been opened near Mall Road to ease traffic woes for tourists." }, { "title": "Safety Warning for Trekkers", "description": "Trekkers are advised to hire a local guide for the Nag Tibba trek due to unpredictable weather." } ], "activities": [ { "title": "Walk on Mall Road", "description": "Experience the colonial charm with a leisurely walk along the bustling Mall Road.", "imageUrl": "https://images.unsplash.com/photo-1583244692083-0570f7e39c4e?q=80&w=1935&auto=format&fit=crop" }, { "title": "Paragliding near Mussoorie Lake", "description": "For adventure seekers, paragliding offers an exhilarating experience and a bird's eye view.", "imageUrl": "https://images.unsplash.com/photo-1588636247321-c270d42399a9?q=80&w=1935&auto=format&fit=crop" } ]
+        }
+    };
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const location = searchInput.value.trim();
+            if (location) fetchSearchResults(location);
+        }
+    });
+
+    function fetchSearchResults(location) {
+        const loader = document.getElementById('loader');
+        const content = document.getElementById('search-results-content');
+        const title = document.getElementById('search-results-title');
+        
+        ['famous-places-content', 'latest-news-content', 'things-to-do-content'].forEach(id => document.getElementById(id).innerHTML = '');
+        title.textContent = `Searching for ${location}...`;
+        content.style.display = 'none';
+        loader.style.display = 'block';
+        openModal('search-results-modal');
+        
+        setTimeout(() => {
+            const searchKey = location.toLowerCase();
+            const data = mockApiData[searchKey];
+            if (data) {
+                renderSearchResults(data, location);
+            } else {
+                title.textContent = `Not Found`;
+                document.getElementById('famous-places-content').innerHTML = `<p style="color:#ff512f;">Sorry, no information found. Try "Nainital" or "Mussoorie".</p>`;
+            }
+            loader.style.display = 'none';
+            content.style.display = 'block';
+        }, 1500);
+    }
+
+    function renderSearchResults(data, location) {
+        document.getElementById('search-results-title').textContent = `Results for ${location}`;
+        const taLink = document.getElementById('tripadvisor-search-link');
+        taLink.href = `https://www.tripadvisor.com/Search?q=${encodeURIComponent(location)}`;
+        taLink.style.display = 'block';
+        const createVisualItem = item => `<div class="result-item visual-item"><img src="${item.imageUrl || ''}" alt="${item.title}"><div class="item-content"><h4>${item.title}</h4><p>${item.description}</p></div></div>`;
+        const createNewsItem = item => `<div class="result-item"><h4>${item.title}</h4><p>${item.description}</p></div>`;
+        document.getElementById('famous-places-content').innerHTML = data.places?.map(createVisualItem).join('') || '<p>No places found.</p>';
+        document.getElementById('latest-news-content').innerHTML = data.news?.map(createNewsItem).join('') || '<p>No news found.</p>';
+        document.getElementById('things-to-do-content').innerHTML = data.activities?.map(createVisualItem).join('') || '<p>No activities found.</p>';
+    }
+
+    // --- LEAFLET MAP ---
+    const map = L.map('map').setView([30.0668, 79.0193], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const disasterIcon = L.icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/564/564619.png', iconSize: [30, 30] });
+    const userIcon = L.icon({ iconUrl: 'https://cdn-icons-png.flaticon.com/512/64/64113.png', iconSize: [30, 30] });
+    
+    const disasters = [ {name:"Landslide Zone: Joshimath", coords:[30.56, 79.56]}, {name:"Flash Flood Risk: Kedarnath", coords:[30.73, 79.06]}];
+    disasters.forEach(area => { L.marker(area.coords, {icon: disasterIcon}).addTo(map).bindPopup(area.name); });
+    
+    if(navigator.geolocation){ 
+        navigator.geolocation.getCurrentPosition(pos => { 
+            const lat = pos.coords.latitude; 
+            const lng = pos.coords.longitude; 
+            map.setView([lat,lng], 13); 
+            L.marker([lat,lng], {icon: userIcon}).addTo(map).bindPopup("You are here").openPopup(); 
+        }); 
+    }
   </script>
 </body>
 </html>
