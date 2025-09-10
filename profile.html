@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile | Smart Tourist Safety</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Inter',sans-serif; background:#0a0f1c; color:white; scroll-behavior:smooth; padding:1rem;}
+h2,h3,h4 {color:#00e0ff; margin-bottom:0.5rem;}
+.container {max-width:900px;margin:2rem auto; display:grid; grid-template-columns:1fr; gap:2rem;}
+.card {background:rgba(0,0,0,0.6); padding:1.5rem; border-radius:12px; box-shadow:0 0 15px rgba(0,255,255,0.4); transform:translateY(30px); opacity:0; transition:0.5s ease; position:relative;}
+.card.visible {transform:translateY(0); opacity:1;}
+input,textarea,select {width:100%;padding:0.8rem;margin-bottom:0.8rem;border:none;border-radius:8px;background: rgba(255,255,255,0.1);color:white;}
+button {cursor:pointer; font-weight:bold; border:none; border-radius:8px; padding:0.6rem 1.2rem; transition:0.3s;}
+button:hover {transform:scale(1.05);}
+.btn-save {background:#00e0ff;color:black;}
+.btn-remove {background:#ff4c4c;color:white;}
+.section-title {margin-bottom:1rem;}
+.family-member, .emergency-contact {display:flex; justify-content:space-between; align-items:center; padding:0.5rem; margin-bottom:0.5rem; background: rgba(255,255,255,0.1); border-radius:8px; animation:slideIn 0.4s;}
+@keyframes slideIn {from{opacity:0; transform:translateX(-20px);} to{opacity:1; transform:translateX(0);}}
+#save-msg {position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:rgba(0,255,255,0.8); color:black; padding:1rem 2rem; border-radius:12px; display:none; font-weight:bold; z-index:1000;}
+img.profile-photo {width:120px; height:120px; border-radius:50%; display:block; margin:0 auto 1rem;}
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center;">User Profile Setup</h2>
+
+<div class="container">
+
+  <!-- Registration Form -->
+  <div class="card" id="registration-card">
+    <h3 class="section-title">Registration (Required)</h3>
+    <input type="text" id="reg-name" placeholder="Full Name">
+    <input type="text" id="reg-id" placeholder="Aadhaar / Passport No">
+    <input type="date" id="reg-dob" placeholder="Date of Birth">
+    <input type="text" id="reg-nationality" placeholder="Nationality / Country of Citizenship">
+    <input type="tel" id="reg-phone" placeholder="Primary Mobile Number">
+    <input type="file" id="reg-photo" accept="image/*">
+    <button class="btn-save" onclick="registerUser()">Register</button>
+  </div>
+
+  <!-- Profile Details -->
+  <div class="card" id="profile-card" style="display:none;">
+    
+    <!-- Back to Home Button -->
+    <button class="btn-remove" style="position:absolute; top:1rem; left:1rem;" onclick="backToHome()">← Home</button>
+
+    <h3 class="section-title">Profile Details</h3>
+
+    <!-- Profile Photo and Name -->
+    <img id="profile-photo" class="profile-photo" src="" alt="Profile Photo">
+    <h3 id="profile-name" style="text-align:center; margin-bottom:1.5rem;"></h3>
+
+    <h4>Blood Group (Required)</h4>
+    <input type="text" id="blood-group" placeholder="e.g., A+, B-, O+">
+
+    <h4>Emergency Contacts (3-10 required)</h4>
+    <div id="emergency-list"></div>
+    <button class="btn-save" onclick="addEmergency()">Add Contact</button>
+    
+    <h4>Allergies</h4>
+    <textarea id="allergies" placeholder="List any allergies..."></textarea>
+    
+    <h4>Pre-existing Medical Conditions</h4>
+    <textarea id="medical" placeholder="List any medical conditions..."></textarea>
+    
+    <h4>Travel Insurance</h4>
+    <input type="text" id="insurance-provider" placeholder="Provider Name">
+    <input type="text" id="insurance-number" placeholder="Policy Number">
+    
+    <h4>Family Members</h4>
+    <div id="family-list"></div>
+    <button class="btn-save" onclick="addFamilyMember()">Add Family Member</button>
+    
+    <br><br>
+    <button class="btn-save" onclick="saveProfile()">Save Profile</button>
+    <button class="btn-remove" onclick="logout()">Logout</button>
+    <button class="btn-remove" onclick="deleteAccount()">Delete Account</button>
+  </div>
+
+</div>
+
+<div id="save-msg">Profile Saved Successfully!</div>
+
+<script>
+// Animate cards
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('visible'); } });
+}, {threshold:0.1});
+cards.forEach(card => observer.observe(card));
+
+// Registration
+function registerUser(){
+  const name=document.getElementById('reg-name').value;
+  const id=document.getElementById('reg-id').value;
+  const dob=document.getElementById('reg-dob').value;
+  const nationality=document.getElementById('reg-nationality').value;
+  const phone=document.getElementById('reg-phone').value;
+  const photo=document.getElementById('reg-photo').files[0] ? URL.createObjectURL(document.getElementById('reg-photo').files[0]) : '';
+  
+  if(!name||!id||!dob||!nationality||!phone){ alert("All fields required!"); return; }
+  
+  const userData={name,id,dob,nationality,phone,photo};
+  localStorage.setItem('userData', JSON.stringify(userData));
+  
+  document.getElementById('registration-card').style.display='none';
+  document.getElementById('profile-card').style.display='block';
+  loadProfile();
+}
+
+// Profile Data
+let emergencyContacts=JSON.parse(localStorage.getItem('emergencyContacts')||'[]');
+let familyMembers=JSON.parse(localStorage.getItem('familyMembers')||'[]');
+
+function loadProfile(){
+  const data=JSON.parse(localStorage.getItem('userData'));
+  if(data.photo){ document.getElementById('profile-photo').src=data.photo; }
+  if(data.name){ document.getElementById('profile-name').innerText = data.name; }
+  document.getElementById('blood-group').value = localStorage.getItem('bloodGroup') || '';
+  renderEmergency();
+  renderFamily();
+  document.getElementById('allergies').value=localStorage.getItem('allergies')||'';
+  document.getElementById('medical').value=localStorage.getItem('medical')||'';
+  document.getElementById('insurance-provider').value=localStorage.getItem('insuranceProvider')||'';
+  document.getElementById('insurance-number').value=localStorage.getItem('insuranceNumber')||'';
+}
+
+// Emergency Contacts
+function renderEmergency(){
+  const container=document.getElementById('emergency-list');
+  container.innerHTML='';
+  emergencyContacts.forEach((c,i)=>{
+    const div=document.createElement('div');
+    div.className='emergency-contact';
+    div.innerHTML=`<span>${c.name} (${c.phone})</span>
+                   <div>
+                     <button onclick="editEmergency(${i})">Edit</button>
+                     <button class="btn-remove" onclick="removeEmergency(${i})">Delete</button>
+                   </div>`;
+    container.appendChild(div);
+  });
+}
+function addEmergency(){
+  if(emergencyContacts.length>=10){ alert("Maximum 10 contacts allowed"); return; }
+  const name=prompt("Contact Name:");
+  const phone=prompt("Contact Phone:");
+  if(name && phone){ 
+    emergencyContacts.push({name,phone}); 
+    localStorage.setItem('emergencyContacts',JSON.stringify(emergencyContacts)); 
+    renderEmergency(); 
+  }
+}
+function editEmergency(i){
+  const name=prompt("Edit Name:", emergencyContacts[i].name);
+  const phone=prompt("Edit Phone:", emergencyContacts[i].phone);
+  if(name && phone){ emergencyContacts[i]={name,phone}; localStorage.setItem('emergencyContacts',JSON.stringify(emergencyContacts)); renderEmergency(); }
+}
+function removeEmergency(i){ if(confirm("Delete this contact?")){ emergencyContacts.splice(i,1); localStorage.setItem('emergencyContacts',JSON.stringify(emergencyContacts)); renderEmergency(); } }
+
+// Family Members
+function renderFamily(){ 
+  const container=document.getElementById('family-list'); container.innerHTML='';
+  familyMembers.forEach((f,i)=>{
+    const div=document.createElement('div'); div.className='family-member';
+    div.innerHTML=`<span>${f.name} (${f.relation})</span>
+                   <div>
+                     <button onclick="editFamily(${i})">Edit</button>
+                     <button class="btn-remove" onclick="removeFamily(${i})">Delete</button>
+                   </div>`;
+    container.appendChild(div);
+  });
+}
+function addFamilyMember(){
+  const name=prompt("Name:"); const relation=prompt("Relation:");
+  if(name && relation){ familyMembers.push({name,relation}); localStorage.setItem('familyMembers',JSON.stringify(familyMembers)); renderFamily(); }
+}
+function editFamily(i){
+  const name=prompt("Edit Name:", familyMembers[i].name);
+  const relation=prompt("Edit Relation:", familyMembers[i].relation);
+  if(name && relation){ familyMembers[i]={name,relation}; localStorage.setItem('familyMembers',JSON.stringify(familyMembers)); renderFamily(); }
+}
+function removeFamily(i){ if(confirm("Remove this family member?")){ familyMembers.splice(i,1); localStorage.setItem('familyMembers',JSON.stringify(familyMembers)); renderFamily(); } }
+
+// Save Profile
+function saveProfile(){
+  const bloodGroup = document.getElementById('blood-group').value.trim();
+  if(!bloodGroup){ alert("Blood Group is required!"); return; }
+  if(emergencyContacts.length<3){ alert("Please add at least 3 emergency contacts!"); return; }
+
+  localStorage.setItem('bloodGroup', bloodGroup);
+  localStorage.setItem('allergies', document.getElementById('allergies').value);
+  localStorage.setItem('medical', document.getElementById('medical').value);
+  localStorage.setItem('insuranceProvider', document.getElementById('insurance-provider').value);
+  localStorage.setItem('insuranceNumber', document.getElementById('insurance-number').value);
+
+  const msg = document.getElementById('save-msg');
+  msg.style.display='block';
+  setTimeout(()=>{ msg.style.display='none'; },2000);
+}
+
+// Logout/Delete
+function logout(){ alert("Logout successful!"); location.reload(); }
+function deleteAccount(){ if(confirm("Delete account permanently?")){ localStorage.clear(); location.reload(); } }
+
+// Back to Home
+function backToHome(){
+  window.location.href = "index.html";
+}
+
+// Auto-load if registered
+if(localStorage.getItem('userData')){ document.getElementById('registration-card').style.display='none'; document.getElementById('profile-card').style.display='block'; loadProfile(); }
+
+</script>
+</body>
+</html>

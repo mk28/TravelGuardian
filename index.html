@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Tourist Safety System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      scroll-behavior: smooth;
+      background: #0a0f1c;
+      overflow-x: hidden;
+    }
+
+    /* Background Video / Galaxy */
+    #bg-video {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
+    }
+    #overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.55); z-index: -1;
+    }
+    .galaxy-bg {
+      background: url("https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2071&auto=format&fit=crop") no-repeat center center/cover;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+    }
+
+    /* Header */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; background-color: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px); position: sticky; top: 0; z-index: 10;
+    }
+    .logo-container { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.2rem; }
+    .logo-container img { height: 42px; filter: brightness(1.5); }
+    .search-bar { flex: 1; margin: 0 2rem; max-width: 600px; }
+    .search-bar input { width: 100%; padding: 0.8rem 1.2rem; border-radius: 30px; border: none; font-size: 1rem; outline: none; background: rgba(255,255,255,0.1); color:white; }
+    .icons { display: flex; gap: 1rem; font-size: 1.2rem; cursor: pointer; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top:70px; left:0; height:100%; width:200px;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); padding-top:2rem; z-index:5;
+    }
+    .sidebar a { display:block; padding:1rem 1.5rem; color:white; text-decoration:none; transition: background 0.3s; }
+    .sidebar a:hover { background: rgba(0,255,255,0.2); }
+
+    /* Hero Section */
+    .hero { margin-left:220px; text-align:center; padding:6rem 2rem 3rem; }
+    .hero h2 { font-family:'Playfair Display', serif; font-size:3rem; margin-bottom:1rem; color:#00e0ff; text-shadow:0 0 15px #00e0ff; }
+    .hero p { font-size:1.2rem; margin-bottom:2rem; color:#ddd; }
+    .hero .buttons { display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; }
+    .hero button { padding:1rem 2rem; border:none; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1rem; min-width:200px; transition: transform 0.2s; }
+    .btn-blue { background: linear-gradient(to right,#00c6ff,#0072ff); color:white; box-shadow:0 0 12px #00c6ff; }
+    .btn-blue:hover { transform: scale(1.05); }
+    .btn-red { background: linear-gradient(to right,#ff512f,#dd2476); color:white; box-shadow:0 0 12px #ff512f; }
+    .btn-red:hover { transform: scale(1.05); }
+
+    /* Extra Sections */
+    .extra-sections { margin-left:220px; padding:2rem; display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    .card { background: rgba(0,0,0,0.6); padding:1.5rem; border-radius:12px; box-shadow:0 0 10px rgba(0,255,255,0.3); }
+    .card h3 { margin-bottom:1rem; color:#00e0ff; }
+    .experience-input { width:100%; padding:0.8rem; border-radius:8px; border:none; margin-bottom:1rem; background: rgba(255,255,255,0.1); color:white; }
+    .experience-btn { background:#00e0ff; border:none; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:bold; color:black; }
+    .post { margin-top:1rem; padding:0.8rem; background: rgba(255,255,255,0.1); border-radius:8px; color:#ddd; }
+
+    /* Map */
+    #map { width:100%; height:300px; border-radius:12px; }
+
+    /* Footer */
+    footer { text-align:center; padding:1rem; background: rgba(0,0,0,0.7); margin-top:2rem; margin-left:220px; font-size:0.9rem; color:#aaa; }
+
+    /* Modal Styles (Shared) */
+    .modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:none; justify-content:center; align-items:center; z-index:20; }
+    .modal-card { background: rgba(10, 20, 40, 0.95); padding:2rem; border-radius:12px; width:90%; max-width:500px; position:relative; box-shadow:0 0 20px #00e0ff; animation:fadeIn 0.5s; }
+    .modal-card input, .modal-card textarea { width:100%; padding:0.8rem; margin:0.5rem 0; border-radius:8px; border:none; background: rgba(255,255,255,0.1); color:white; }
+    .modal-card button { margin:0.5rem 0; width:100%; padding:0.8rem; border:none; border-radius:8px; cursor:pointer; font-weight:bold; }
+    .btn-save { background:#00e0ff; color:black; }
+    .btn-remove { background:#ff512f; color:white; }
+    #profile-photo { display:block; margin:0 auto 1rem auto; width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid #00e0ff; }
+    #user-name { text-align:center; font-size:1.3rem; margin-bottom:1rem; color:#00e0ff; }
+    
+    /* Emergency Contacts Modal Specifics */
+    .emergency-list { list-style: none; padding: 0; }
+    .emergency-list li { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    .emergency-list li:last-child { border-bottom: none; }
+    .emergency-list span:first-child { font-weight: bold; }
+    .emergency-list span:last-child { font-weight: 600; color: #00e0ff; letter-spacing: 1px; }
+    .emergency-note { font-size: 0.9rem; color: #ccc; margin-top: 1.5rem; text-align: center; }
+
+    #save-msg { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background: rgba(0,0,0,0.8); padding:1rem 2rem; border-radius:10px; color:#00e0ff; display:none; z-index:30; font-size:1.2rem; opacity:0; transition:opacity 0.5s; }
+    @keyframes fadeIn { from {opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);} }
+
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="background.mp4" type="video/mp4" />
+  </video>
+  <div id="overlay"></div>
+
+  <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="Safety Logo"> Smart Tourist Safety
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search tourist spots, alerts, or safety guides...">
+    </div>
+    <div class="icons">
+      <span id="notification">🔔</span>
+      <span id="profile">👤</span>
+      <span id="settings">⚙️</span>
+    </div>
+  </header>
+
+  <div class="sidebar">
+    <a href="#">Safe Routes</a>
+    <a href="#" id="emergency-contacts-link">Emergency Contacts</a>
+    <a href="#" id="nearby-hospitals">Nearby Hospitals</a>
+    <a href="#">Crowd Alerts</a>
+    <a href="#">Travel Tips</a>
+  </div>
+
+  <section class="hero">
+    <h2>Travel Smarter. Stay Safer.</h2>
+    <p>Real-time safety alerts, smart navigation, and secure exploration for every traveler.</p>
+    <div class="buttons">
+      <button class="btn-blue">Explore Safe Routes</button>
+      <button class="btn-red">Report Incident</button>
+    </div>
+  </section>
+
+  <section class="extra-sections">
+    <div class="card">
+      <h3>Share Your Experience</h3>
+      <textarea class="experience-input" placeholder="Share your travel experience..."></textarea>
+      <button class="experience-btn" onclick="postExperience()">Post</button>
+      <div id="experience-feed"></div>
+    </div>
+    <div class="card">
+      <h3>Disastrous Areas Near You</h3>
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Smart Tourist Safety | About | Help | Terms | Contact</p>
+  </footer>
+
+  <div id="profile-modal" class="modal">
+    <div class="modal-card" id="registration-card">
+      <h3>Registration</h3>
+      <input type="text" id="reg-name" placeholder="Full Name">
+      <input type="text" id="reg-id" placeholder="Aadhaar / Passport No">
+      <input type="date" id="reg-dob" placeholder="Date of Birth">
+      <input type="text" id="reg-nationality" placeholder="Nationality / Country">
+      <input type="tel" id="reg-phone" placeholder="Primary Mobile Number">
+      <input type="file" id="reg-photo" accept="image/*">
+      <button class="btn-save" onclick="registerUser()">Register</button>
+      <button class="btn-remove" onclick="closeModal('profile-modal')">Cancel</button>
+    </div>
+
+    <div class="modal-card" id="profile-card" style="display:none;">
+      <button class="btn-remove" style="position:absolute; top:1rem; right:1rem;" onclick="backToRegistration()">Back</button>
+      <img src="" id="profile-photo" alt="Profile Photo">
+      <div id="user-name"></div>
+      <h4>Emergency Contacts (3 Required)</h4>
+      <div id="emergency-list"></div>
+      <button class="btn-save" onclick="addEmergency()">Add Contact</button>
+      <h4>Allergies</h4>
+      <textarea id="allergies" placeholder="List any allergies..."></textarea>
+      <h4>Pre-existing Medical Conditions</h4>
+      <textarea id="medical" placeholder="List any medical conditions..."></textarea>
+      <h4>Travel Insurance</h4>
+      <input type="text" id="insurance-provider" placeholder="Provider Name">
+      <input type="text" id="insurance-number" placeholder="Policy Number">
+      <h4>Family Members</h4>
+      <div id="family-list"></div>
+      <button class="btn-save" onclick="addFamilyMember()">Add Family Member</button>
+      <br><br>
+      <button class="btn-save" onclick="saveProfile()">Save Profile</button>
+      <button class="btn-remove" onclick="logout()">Logout</button>
+      <button class="btn-remove" onclick="deleteAccount()">Delete Account</button>
+    </div>
+  </div>
+
+  <!-- **NEW** Emergency Contacts Modal -->
+  <div id="emergency-modal" class="modal">
+    <div class="modal-card">
+        <h3>Emergency Contacts (Uttarakhand)</h3>
+        <ul class="emergency-list">
+            <li><span>National Emergency Helpline</span> <span>112</span></li>
+            <li><span>Police</span> <span>100</span></li>
+            <li><span>Fire</span> <span>101</span></li>
+            <li><span>Ambulance</span> <span>108</span></li>
+            <li><span>State Disaster Management</span> <span>1070</span></li>
+            <li><span>Women Helpline</span> <span>1091</span></li>
+            <li><span>Tourist Police</span> <span>112 / 100</span></li>
+        </ul>
+        <p class="emergency-note">For Tourist Police, dial 112 or 100 and ask for assistance.</p>
+        <button class="btn-remove" onclick="closeModal('emergency-modal')">Close</button>
+    </div>
+  </div>
+
+
+  <div id="save-msg">Profile Saved Successfully!</div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // --- Modal Functions ---
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+    
+    // Close modal if background is clicked
+    window.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    });
+
+    // --- Event Listeners ---
+    document.getElementById("profile").addEventListener("click", function(){
+      openModal('profile-modal');
+      document.getElementById("bg-video").style.display = "none";
+      document.getElementById("overlay").classList.add("galaxy-bg");
+    });
+    
+    // **NEW** Emergency Contacts Link
+    document.getElementById('emergency-contacts-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        openModal('emergency-modal');
+    });
+
+    // Settings → same tab
+    document.getElementById("settings").addEventListener("click", function(){
+      window.location.href="settings.html";
+    });
+
+    // Post experience
+    function postExperience(){
+      let input = document.querySelector(".experience-input");
+      if(input.value.trim() !== ""){
+        let post = document.createElement("div");
+        post.classList.add("post");
+        post.innerText = input.value;
+        document.getElementById("experience-feed").prepend(post);
+        input.value = "";
+      }
+    }
+    
+    // Find Nearby Hospitals
+    document.getElementById("nearby-hospitals").addEventListener("click", function(e){
+        e.preventDefault();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(pos => {
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                const searchUrl = `https://www.google.com/maps/search/hospitals/@${lat},${lng},15z`;
+                window.open(searchUrl, '_blank');
+            }, () => {
+                alert("Could not get your location. Please enable location services.");
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+
+    // Leaflet Map
+    const map = L.map('map').setView([28.6139,77.2090], 13); // default: Delhi
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const disasters = [
+      {name:"Flood Zone A", coords:[28.6150,77.2200]},
+      {name:"Earthquake Risk Zone", coords:[28.6200,77.2100]},
+      {name:"Traffic Accident Prone Area", coords:[28.6100,77.2000]},
+      {name:"Industrial Hazard Area", coords:[28.6250,77.2300]}
+    ];
+
+    disasters.forEach(area => {
+      L.marker(area.coords, {icon: L.icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/512/564/564619.png',
+        iconSize: [30, 30]
+      })}).addTo(map).bindPopup(area.name);
+    });
+
+    // Show user's current location
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(pos=>{
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        map.setView([lat,lng], 13);
+        L.marker([lat,lng], {icon: L.icon({
+          iconUrl: 'https://cdn-icons-png.flaticon.com/512/64/64113.png',
+          iconSize: [30,30]
+        })}).addTo(map).bindPopup("You are here").openPopup();
+      });
+    }
+
+    // --- Profile Functions ---
+    function backToRegistration(){
+      document.getElementById('profile-card').style.display='none';
+      document.getElementById('registration-card').style.display='block';
+    }
+
+    function registerUser(){
+      const name=document.getElementById('reg-name').value;
+      const photo=document.getElementById('reg-photo').files[0];
+      if(!name || !photo){
+        alert('Please enter name and profile photo');
+        return;
+      }
+      const reader=new FileReader();
+      reader.onload=function(e){
+        document.getElementById('profile-photo').src=e.target.result;
+      }
+      reader.readAsDataURL(photo);
+      document.getElementById('user-name').innerText=name;
+      document.getElementById('registration-card').style.display='none';
+      document.getElementById('profile-card').style.display='block';
+    }
+
+    function addEmergency(){
+      const list=document.getElementById('emergency-list');
+      if(list.children.length>=3){ alert('Maximum 3 contacts allowed'); return; }
+      const contact=prompt('Enter Emergency Contact (Name & Phone)');
+      if(contact) {
+        const div=document.createElement('div'); div.innerText=contact;
+        list.appendChild(div);
+      }
+    }
+
+    function addFamilyMember(){
+      const list=document.getElementById('family-list');
+      const member=prompt('Enter Family Member Name');
+      if(member){
+        const div=document.createElement('div'); div.innerText=member;
+        list.appendChild(div);
+      }
+    }
+
+    function saveProfile(){
+      const contacts=document.getElementById('emergency-list').children;
+      if(contacts.length<3){ alert('Please add 3 emergency contacts'); return; }
+      const msg=document.getElementById('save-msg');
+      msg.style.display='block';
+      msg.style.opacity='1';
+      setTimeout(()=>{
+        msg.style.opacity='0';
+        setTimeout(()=>{ msg.style.display='none'; },500);
+      },3000);
+    }
+
+    function logout(){ alert('Logged Out'); }
+    function deleteAccount(){ alert('Account Deleted'); }
+
+  </script>
+</body>
+</html>

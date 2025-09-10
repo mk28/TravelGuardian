@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Smart Tourist Safety</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --background-color: #0a0f1c;
+            --section-background: rgba(0, 0, 0, 0.6);
+            --input-background: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+            --subtle-text-color: #aab3c4;
+            --primary-color: #00e0ff;
+            --danger-color: #ff512f;
+            --border-color: rgba(0, 224, 255, 0.2);
+            --hover-color: rgba(0, 224, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        /* --- Main Layout --- */
+        .settings-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 1.25rem;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+            color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-color);
+        }
+        
+        header .back-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        header .back-button svg {
+             width: 24px;
+             height: 24px;
+        }
+
+
+        /* --- Settings Sections --- */
+        .settings-section {
+            background-color: var(--section-background);
+            backdrop-filter: blur(8px);
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            overflow: hidden;
+        }
+
+        .settings-section h2 {
+            font-size: 0.9rem;
+            color: var(--subtle-text-color);
+            padding: 20px 20px 8px 20px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Individual Setting Item --- */
+        .settings-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            cursor: pointer;
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+        
+        .settings-item:hover {
+            background-color: var(--hover-color);
+        }
+
+        .settings-item .icon {
+            margin-right: 15px;
+            color: var(--primary-color);
+            width: 24px;
+            text-align: center;
+        }
+        
+        .settings-item .icon svg {
+             width: 22px;
+             height: 22px;
+             vertical-align: middle;
+        }
+
+        .settings-item-content {
+            flex-grow: 1;
+        }
+        
+        .settings-item-content .title {
+            font-size: 1rem;
+        }
+
+        .settings-item-content .subtitle {
+            font-size: 0.85rem;
+            color: var(--subtle-text-color);
+        }
+
+        .settings-item .action {
+            margin-left: auto;
+            color: var(--subtle-text-color);
+        }
+        
+        /* --- Toggle Switch --- */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 51px;
+            height: 31px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 23px;
+            width: 23px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        
+        /* --- Other Action Elements --- */
+        .action select {
+            background: var(--input-background);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 0.95rem;
+        }
+
+        .action-chevron svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .logout-button, .delete-button {
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            font-weight: bold;
+        }
+        .logout-button { color: #ffab2f; }
+        .delete-button { color: var(--danger-color); }
+        
+        /* --- Modal Styles --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: var(--section-background);
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            width: 85%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .modal-buttons button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            min-width: 100px;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .modal-buttons button:hover {
+            transform: scale(1.05);
+        }
+        .confirm-btn {
+            background: linear-gradient(to right, #ff512f, #dd2476);
+            box-shadow: 0 0 12px #ff512f;
+        }
+        .cancel-btn {
+            background: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="settings-container">
+        <header>
+             <button class="back-button" onclick="window.location.href = 'index.html'">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+             </button>
+             <h1>Settings</h1>
+        </header>
+
+        <main>
+            <div class="settings-section">
+                <h2>Account</h2>
+                <div class="settings-item" onclick="alert('Navigate to Change Password page')">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <div class="settings-item-content">
+                        <div class="title">Change Password</div>
+                    </div>
+                    <div class="action action-chevron">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Security & Privacy</h2>
+                <div class="settings-item">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <div class="settings-item-content">
+                        <div class="title">Biometric Lock</div>
+                        <div class="subtitle">Secure app with Face ID or Fingerprint</div>
+                    </div>
+                    <div class="action">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="biometricLock">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="settings-item" onclick="alert('Navigate to Location Sharing Settings page')">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="settings-item-content">
+                        <div class="title">Location Sharing</div>
+                        <div class="subtitle">Manage who can see your location</div>
+                    </div>
+                    <div class="action action-chevron">
+                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>Preferences</h2>
+                <div class="settings-item">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    </div>
+                    <div class="settings-item-content">
+                        <div class="title">Push Notifications</div>
+                        <div class="subtitle">For alerts and important updates</div>
+                    </div>
+                    <div class="action">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="pushNotifications">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                 <div class="settings-item">
+                    <div class="icon">
+                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 12H16c-.7 2-2 3-3 3s-2.3-1-3-3H2.5"></path><path d="M12 2.5v11c1 0 2.3-1 3-3 .7-2 0-3-3-3S9.7 4.5 9 6.5c-.7 2 0 3 3 3h2"></path><path d="M12 21.5c-2 0-3-1-3-3 0-2 1-3 3-3s3 1 3 3c0 2-1 3-3 3v0z"></path></svg>
+                    </div>
+                    <div class="settings-item-content">
+                        <div class="title">Language</div>
+                    </div>
+                    <div class="action">
+                        <select id="languageSelector">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="de">Deutsch</option>
+                            <option value="hi">हिन्दी</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="settings-item logout-button" id="logoutButton">
+                    Log Out
+                </div>
+                <div class="settings-item delete-button" id="deleteAccountButton">
+                    Delete Account
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Are you sure?</h3>
+            <p id="modalText">This action cannot be undone.</p>
+            <div class="modal-buttons">
+                <button id="cancelBtn" class="cancel-btn">Cancel</button>
+                <button id="confirmBtn" class="confirm-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggles = {
+            biometricLock: document.getElementById('biometricLock'),
+            pushNotifications: document.getElementById('pushNotifications')
+        };
+        const languageSelector = document.getElementById('languageSelector');
+        const logoutButton = document.getElementById('logoutButton');
+        const deleteAccountButton = document.getElementById('deleteAccountButton');
+        
+        const modal = document.getElementById('confirmationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const confirmBtn = document.getElementById('confirmBtn');
+
+        function loadSettings() {
+            for (const key in toggles) {
+                const savedValue = localStorage.getItem(key);
+                toggles[key].checked = (savedValue === 'true');
+            }
+            // Set push notifications to be on by default for a safety app
+            if (localStorage.getItem('pushNotifications') === null) {
+                toggles.pushNotifications.checked = true;
+                localStorage.setItem('pushNotifications', 'true');
+            }
+
+            const savedLanguage = localStorage.getItem('appLanguage');
+            if (savedLanguage) {
+                languageSelector.value = savedLanguage;
+            }
+        }
+        
+        function saveToggleSetting(key, value) {
+            localStorage.setItem(key, value);
+            console.log(`Setting '${key}' saved as '${value}'`);
+        }
+        
+        for (const key in toggles) {
+            toggles[key].addEventListener('change', (event) => {
+                saveToggleSetting(key, event.target.checked);
+            });
+        }
+        
+        languageSelector.addEventListener('change', (event) => {
+            const selectedLanguage = event.target.value;
+            localStorage.setItem('appLanguage', selectedLanguage);
+            console.log(`Language changed to: ${selectedLanguage}`);
+            alert(`Language set to ${event.target.options[event.target.selectedIndex].text}.`);
+        });
+        
+        let currentAction = null;
+
+        function showModal(title, text, action) {
+            modalTitle.textContent = title;
+            modalText.textContent = text;
+            currentAction = action;
+            modal.style.display = 'flex';
+        }
+
+        function hideModal() {
+            modal.style.display = 'none';
+            currentAction = null;
+        }
+        
+        logoutButton.addEventListener('click', () => {
+            showModal('Log Out', 'Are you sure you want to log out?', 'logout');
+        });
+
+        deleteAccountButton.addEventListener('click', () => {
+            showModal('Delete Account', 'This is permanent and cannot be undone. All your data will be erased. Are you sure?', 'delete');
+        });
+
+        cancelBtn.addEventListener('click', hideModal);
+        
+        confirmBtn.addEventListener('click', () => {
+            if (currentAction === 'logout') {
+                console.log('User logged out.');
+                alert('You have been successfully logged out.');
+                // In a real app, redirect: window.location.href = "/login.html";
+            } else if (currentAction === 'delete') {
+                console.log('User account deleted.');
+                alert('Your account has been permanently deleted.');
+                // In a real app, redirect: window.location.href = "/signup.html";
+            }
+            hideModal();
+        });
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                hideModal();
+            }
+        }
+
+        loadSettings();
+    });
+</script>
+
+</body>
+</html>
